@@ -1,0 +1,40 @@
+:root{
+    --img-height: 250px;
+    --img-width: 250px;
+}
+body{
+    background-color: /*#f3f3f2;*/ #424242;
+    font-family: "SN Pro", sans-serif;
+}
+a{
+    color: #cbff40;
+    text-decoration: none;
+}a:hover{
+    color: #101010;
+}
+.barra{
+    background-color: /*rgba(0, 0, 0, 0.8);*/ #101010;
+
+    display: flex;
+    justify-content: center;
+}
+.menu{
+    display: inline-block;
+    padding: 5px 20px;
+}.menu:hover{
+    background-color: #fffa00;
+}
+
+img{
+    height: var(--img-height);
+    width: var(--img-width);
+}
+
+.lendario{
+    display: inline-block;
+    padding: 30px;
+}
+
+.corpo-pagina{
+    padding-left: 50px;
+}

@@ -1,0 +1,21 @@
+.quadro{
+    padding: 20px;
+    margin-bottom: 10px;
+    width: 400px;
+}
+
+#quadVermelho{
+    background-color: red;
+}
+
+#quadAzul{
+    background-color: blue;
+}
+
+#quadVerde{
+    background-color: green;
+}
+
+#quadAmarelo{
+    background-color: yellow;
+}

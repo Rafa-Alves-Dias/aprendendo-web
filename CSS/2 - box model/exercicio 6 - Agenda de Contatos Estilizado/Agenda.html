@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Agenda</title> 
+
+    <!-- Google fonts: -->
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cabecalho">
+        <h1>📱 Minha Agenda de Contatos</h1>
+        <p>Organize os seus contatos de forma simples e rápida</p>
+    </div>
+
+    <div class="bloco-branco">
+        <div class="bloco-cinza">
+            <h1>➕ Adicionar Novo Contato</h1>
+            <input type="text" id="nome" placeholder="Digite o nome completo"></input>
+            <br>
+            <input type="email" id="email" placeholder="Digite o email"></input>
+            <br>
+            <input type="number" id="telefone" placeholder="Digite o telefone"></input>
+            <button>Adicionar Contato</button>
+
+        </div>
+        <h1>📋 Lista de Contato</h1>
+        <table class="zebra-table">
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+            </tr>
+            <tr>
+                <td>Carlos Eduardo Mendes</td>
+                <td>carlos.mendes@emailteste.com</td>
+                <td>(11) 98765-4321</td>
+            </tr>
+            <tr id="trEven">
+                <td>Fernanda Lima Souza</td>
+                <td>fernanda.souza@exemplofake.net</td>
+                <td>(21) 99876-5432</td>
+            </tr>
+            <tr>        
+                <td>Ricardo Alves Pereira</td>
+                <td>ricardo.pereira@dominiofake.org</td>
+                <td>(31) 91234-5678</td>
+            </tr>
+            <tr id="trEven">    
+                <td>Juliana Santos Costa</td>
+                <td>juliana.costa@mailfake.com.br</td>
+                <td>(41) 97654-3210</td>
+            </tr>
+            <tr>   
+                <td>Pedro Henrique Oliveira</td>
+                <td>pedro.oliveira@testeexemplo.net</td>
+                <td>(51) 99345-6789</td>
+            </tr>
+        </table>
+    </div>
+    
+
+</body> 
+</html>

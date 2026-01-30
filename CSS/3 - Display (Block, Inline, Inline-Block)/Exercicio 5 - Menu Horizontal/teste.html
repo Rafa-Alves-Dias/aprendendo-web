@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .gallery-item {
+            width: 280px;
+            height: 350px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            margin: 15px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .item-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: all 0.4s ease 0.1s;
+            z-index: 2;
+        }
+
+        .item-info h3 {
+            margin: 0 0 8px 0;
+            color: #333;
+        }
+
+        .item-info p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            transform: scale(0);
+            transition: transform 0.3s ease 0.2s;
+        }
+
+        /* Hover Effects */
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover .item-info {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .gallery-item:hover .price-tag {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=280&h=350&fit=crop" 
+         alt="Gato de óculos">
+    <div class="price-tag">R$ 299,90</div>
+    <div class="item-info">
+        <h3>Gato Intelectual</h3>
+        <p>Este gato adora ler livros e usar óculos. Perfeito para ambientes sofisticados.</p>
+        <div style="margin-top: 10px; display: flex; gap: 10px;">
+            <span style="font-size: 12px; background: #f1f1f1; padding: 3px 8px; border-radius: 4px;">Inteligente</span>
+            <span style="font-size: 12px; background: #f1f1f1; padding: 3px 8px; border-radius: 4px;">Calmo</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

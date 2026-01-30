@@ -1,0 +1,29 @@
+body{
+    background-color: #1A1A1A;
+    color:#F8F5F2;
+    /*font-size: 80px;*/
+}
+
+span{
+    color: #1A1A1A;
+}
+.amarelo{
+    background-color: #F4C430;
+}
+.azul{
+    background-color: #4A7B9D;
+    color:#F8F5F2;
+}
+
+.branco{
+    background-color: #F8F5F2;
+}
+
+.rosa{
+    background-color: #E8AAB5; 
+}
+
+.grena{
+    background-color: #7A1C3F;
+    color:#F8F5F2;
+}

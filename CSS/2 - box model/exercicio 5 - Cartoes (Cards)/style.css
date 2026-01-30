@@ -1,0 +1,23 @@
+body{
+    background-color: #1b1e23;
+}
+
+.card{
+    width: 300px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 7px solid #ddd;
+    background-color: #76c5f9;
+}
+
+#bronze{
+    border-color: #E3C9B1;
+} 
+
+#silver{
+    border-color: #E0E3E7;
+}
+
+#gold{
+    border-color: #F2E6B1;
+}

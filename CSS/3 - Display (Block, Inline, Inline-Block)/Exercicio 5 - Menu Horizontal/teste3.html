@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efeito Imagem Quadrada → Card Retangular</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        /* =========================================== */
+        /* EFEITO 1: Card retangular HORIZONTAL aparece */
+        /* =========================================== */
+        .square-to-horizontal {
+            position: relative;
+            width: 250px; /* Largura inicial (quadrado) */
+            height: 250px; /* Altura inicial (quadrado) */
+            margin: 0 auto;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        /* Estado inicial: apenas a imagem quadrada */
+        .square-to-horizontal .image-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .square-to-horizontal img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+        }
+
+        /* Card retangular (escondido inicialmente) */
+        .square-to-horizontal .horizontal-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 500px; /* Largura final do card retangular */
+            height: 250px; /* Altura do card retangular */
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+        }
+
+        /* Conteúdo do card (lado direito) */
+        .square-to-horizontal .card-content {
+            flex: 1;
+            padding: 30px;
+            padding-left: 280px; /* Espaço para a imagem expandida */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.4s ease 0.2s;
+        }
+
+        /* Efeito no hover */
+        .square-to-horizontal:hover {
+            width: 500px; /* Expande para card retangular */
+        }
+
+        .square-to-horizontal:hover .horizontal-card {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .square-to-horizontal:hover img {
+            width: 250px; /* Mantém largura fixa (mas agora é 50% do card) */
+            height: 250px; /* Mantém altura fixa */
+            transform: translateX(15px) translateY(0) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .square-to-horizontal:hover .card-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* =========================================== */
+        /* EFEITO 2: Card retangular VERTICAL aparece */
+        /* =========================================== */
+        .square-to-vertical {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .square-to-vertical .image-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .square-to-vertical img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+        }
+
+        /* Card retangular vertical */
+        .square-to-vertical .vertical-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px; /* Mais estreito que horizontal */
+            height: 450px; /* Muito mais alto */
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .square-to-vertical .vertical-content {
+            flex: 1;
+            padding: 30px;
+            padding-top: 280px; /* Espaço para a imagem expandida */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.2s;
+        }
+
+        /* Efeito no hover */
+        .square-to-vertical:hover {
+            width: 400px;
+            height: 450px;
+        }
+
+        .square-to-vertical:hover .vertical-card {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .square-to-vertical:hover img {
+            width: 350px; /* Imagem expande horizontalmente */
+            height: 250px; /* Mas mantém altura original */
+            transform: translateX(25px) translateY(15px) scale(1.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .square-to-vertical:hover .vertical-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================== */
+        /* EFEITO 3: Card aparece dos 4 lados (expansão) */
+        /* =========================================== */
+        .square-to-expanding {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .square-to-expanding .image-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            transition: all 0.5s ease;
+        }
+
+        .square-to-expanding img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+        }
+
+        /* Card que se expande dos 4 lados */
+        .square-to-expanding .expanding-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0; /* Começa com 0 */
+            height: 0; /* Começa com 0 */
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 10;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .square-to-expanding .expanding-content {
+            opacity: 0;
+            padding: 30px;
+            text-align: center;
+            transform: scale(0.8);
+            transition: all 0.4s ease 0.3s;
+        }
+
+        /* Efeito no hover */
+        .square-to-expanding:hover .expanding-card {
+            width: 450px;
+            height: 300px;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .square-to-expanding:hover img {
+            transform: scale(1.15);
+            z-index: 15;
+            position: relative;
+        }
+
+        .square-to-expanding:hover .expanding-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* =========================================== */
+        /* EFEITO 4: Card aparece com animação de "origami" */
+        /* =========================================== */
+        .square-to-origami {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .square-to-origami .image-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+        }
+
+        .square-to-origami img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+        }
+
+        /* Card que "desdobra" */
+        .square-to-origami .origami-card {
+            position: absolute;
+            top: -50px; /* Começa acima */
+            left: -50px; /* Começa à esquerda */
+            width: 350px;
+            height: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: rotateX(90deg) rotateY(90deg) scale(0.5);
+            transform-origin: center;
+            transition: all 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .square-to-origami .origami-content {
+            flex: 1;
+            padding: 30px;
+            padding-top: 200px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.4s ease 0.4s;
+        }
+
+        /* Efeito no hover */
+        .square-to-origami:hover .origami-card {
+            opacity: 1;
+            transform: rotateX(0) rotateY(0) scale(1);
+            top: -50px;
+            left: -50px;
+        }
+
+        .square-to-origami:hover img {
+            transform: translate(50px, 50px) scale(1.2);
+            z-index: 15;
+        }
+
+        .square-to-origami:hover .origami-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================== */
+        /* ESTILOS COMUNS PARA CONTEÚDO DOS CARDS */
+        /* =========================================== */
+        .card-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .card-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .card-price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .card-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+
+        .card-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Estilos para texto explicativo */
+        .example-title {
+            text-align: center;
+            color: white;
+            margin: 40px 0 20px 0;
+            font-size: 1.8em;
+        }
+
+        .example-description {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Animações */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-note {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 100;
+            animation: float 3s ease-in-out infinite;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎴 Imagem Quadrada → Card Retangular no Hover</h1>
+        <p class="example-description">
+            Passe o mouse sobre cada imagem quadrada para ver como ela se expande em um card retangular completo.
+        </p>
+
+        <div class="grid">
+            <!-- EFEITO 1: Card Horizontal -->
+            <div>
+                <h2 class="example-title">1. Expansão Horizontal</h2>
+                <p class="example-description" style="font-size: 0.9em;">
+                    A imagem quadrada expande para a direita, revelando um card horizontal.
+                </p>
+                <div class="square-to-horizontal">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba4e?w=250&h=250&fit=crop" 
+                             alt="Gato Exótico">
+                    </div>
+                    <div class="horizontal-card">
+                        <div class="card-content">
+                            <div class="card-title">Gato Exótico</div>
+                            <p class="card-description">
+                                Conhecido por sua pelagem densa e rosto achatado. 
+                                Personalidade calma e dócil, perfeito para famílias.
+                            </p>
+                            <div class="card-tags">
+                                <span class="card-tag">Calmo</span>
+                                <span class="card-tag">Carinhoso</span>
+                                <span class="card-tag">Indoor</span>
+                            </div>
+                            <div class="card-price">R$ 299,90</div>
+                            <button class="card-button">Adotar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EFEITO 2: Card Vertical -->
+            <div>
+                <h2 class="example-title">2. Expansão Vertical</h2>
+                <p class="example-description" style="font-size: 0.9em;">
+                    A imagem quadrada expande para baixo, revelando um card vertical.
+                </p>
+                <div class="square-to-vertical">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=250&h=250&fit=crop" 
+                             alt="Gato de Óculos">
+                    </div>
+                    <div class="vertical-card">
+                        <div class="vertical-content">
+                            <div class="card-title">Gato Intelectual</div>
+                            <p class="card-description">
+                                Adora ambientes tranquilos e livros. 
+                                Perfeito para apartamentos e pessoas que trabalham em casa.
+                            </p>
+                            <div class="card-tags">
+                                <span class="card-tag">Inteligente</span>
+                                <span class="card-tag">Calmo</span>
+                                <span class="card-tag">Caseiro</span>
+                            </div>
+                            <div class="card-price">R$ 349,90</div>
+                            <button class="card-button">Saiba mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EFEITO 3: Expansão dos 4 lados -->
+            <div>
+                <h2 class="example-title">3. Expansão dos 4 Lados</h2>
+                <p class="example-description" style="font-size: 0.9em;">
+                    O card aparece expandindo igualmente de todos os lados.
+                </p>
+                <div class="square-to-expanding">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=250&h=250&fit=crop" 
+                             alt="Gato Dormindo">
+                    </div>
+                    <div class="expanding-card">
+                        <div class="expanding-content">
+                            <div class="card-title">Gato Dorminhoco</div>
+                            <p class="card-description">
+                                Pode dormir até 16 horas por dia. 
+                                Muito carinhoso quando acordado e adora carinho.
+                            </p>
+                            <div class="card-tags">
+                                <span class="card-tag">Calmo</span>
+                                <span class="card-tag">Dócil</span>
+                                <span class="card-tag">Silencioso</span>
+                            </div>
+                            <div class="card-price">R$ 259,90</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EFEITO 4: Animação Origami -->
+            <div>
+                <h2 class="example-title">4. Animação Origami</h2>
+                <p class="example-description" style="font-size: 0.9em;">
+                    O card "desdobra" como um origami a partir da imagem.
+                </p>
+                <div class="square-to-origami">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=250&h=250&fit=crop" 
+                             alt="Gato Curioso">
+                    </div>
+                    <div class="origami-card">
+                        <div class="origami-content">
+                            <div class="card-title">Gato Curioso</div>
+                            <p class="card-description">
+                                Adora explorar novos ambientes. 
+                                Muito ativo e brincalhão. Ideal para casas com espaço.
+                            </p>
+                            <div class="card-tags">
+                                <span class="card-tag">Ativo</span>
+                                <span class="card-tag">Brincalhão</span>
+                                <span class="card-tag">Curioso</span>
+                            </div>
+                            <div class="card-price">R$ 399,90</div>
+                            <button class="card-button">Ver detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-note">
+        <strong>💡 Dica:</strong> Passe o mouse sobre cada imagem quadrada para ver o efeito. 
+        A imagem aumenta e um card retangular aparece ao redor.
+    </div>
+
+    <script>
+        // Adiciona efeito sutil de entrada aos cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.square-to-horizontal, .square-to-vertical, .square-to-expanding, .square-to-origami');
+            
+            cards.forEach((card, index) => {
+                // Atrasa a aparência de cada card para criar um efeito sequencial
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 + (index * 100));
+            });
+
+            // Adiciona instrução ao passar o mouse
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '100';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

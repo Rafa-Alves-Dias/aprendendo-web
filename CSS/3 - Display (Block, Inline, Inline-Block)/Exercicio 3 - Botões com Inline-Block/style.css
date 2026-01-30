@@ -1,0 +1,67 @@
+:root{
+    --base-height: 80px;
+    --base-width: 260px;
+}
+body{
+    background-color: rgb(82, 81, 81);
+}
+
+.botao{
+    display: inline-block;
+    
+    height: var(--base-height);
+    width: var(--base-width);
+    
+    padding: 12px 20px;   
+    
+    font-size: 30px;
+
+    
+    border-radius: 50px;
+    
+}
+.botao:hover{
+    font-size: 32px;
+    height: calc(var(--base-height) * 1.1);
+    width: calc(var(--base-width) * 1.1);
+}
+
+#historia{
+    background-color: #ffe4c4;
+    border-color: #D4B89A;
+}
+#historia:hover{
+    background-color: #fce9d5;
+}
+
+#ciencias{
+    background-color: #b1fee5;
+    border-color: #7DC9B5;
+}
+#ciencias:hover{
+    background-color: #cbfdee;
+}
+
+#matematica{
+    background-color: #fff8b5;
+    border-color: #D9D194;
+}
+#matematica:hover{
+    background-color: #fbf7cf;
+}
+
+#portugues{
+    background-color: #f7b9c6;
+    border-color: #C9949F;
+}
+#portugues:hover{
+    background-color: #fac8d4;
+}
+
+#geografia{
+    background-color: #e5d0b4;
+    border-color: #B8A891;
+}
+#geografia:hover{
+    background-color: #f0dec4;
+}

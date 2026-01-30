@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📸 Showcase Completo de Efeitos Hover</title>
+    <style>
+        /* RESET & CONFIGURAÇÕES GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* CABEÇALHO */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* SEÇÕES */
+        section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            display: none;
+        }
+
+        .toggle-code {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .toggle-code:hover {
+            background: #5a6fd8;
+        }
+
+        /* =========================================== */
+        /* 1. EFEITO BÁSICO (Card aparece de baixo) */
+        /* =========================================== */
+        .effect-1 {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .effect-1 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .effect-1 .info-card {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+            opacity: 0;
+        }
+
+        .effect-1:hover img {
+            transform: scale(1.1);
+        }
+
+        .effect-1:hover .info-card {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* =========================================== */
+        /* 2. EFEITO MODERNO (Card desliza do lado) */
+        /* =========================================== */
+        .effect-2 {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .effect-2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .effect-2 .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,0,150,0.7), rgba(0,204,255,0.7));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .effect-2 .overlay-content {
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease 0.2s;
+        }
+
+        .effect-2:hover img {
+            transform: scale(1.15);
+            filter: brightness(0.7);
+        }
+
+        .effect-2:hover .overlay {
+            transform: translateX(0);
+        }
+
+        .effect-2:hover .overlay-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================== */
+        /* 3. EFEITO ELEGANTE (Zoom + Card flutuante) */
+        /* =========================================== */
+        .effect-3 {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .effect-3 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .effect-3 .float-card {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: all 0.4s ease 0.1s;
+            z-index: 2;
+        }
+
+        .effect-3 .price-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            transform: scale(0);
+            transition: transform 0.3s ease 0.2s;
+        }
+
+        .effect-3:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .effect-3:hover img {
+            transform: scale(1.1);
+        }
+
+        .effect-3:hover .float-card {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .effect-3:hover .price-tag {
+            transform: scale(1);
+        }
+
+        /* =========================================== */
+        /* 4. EFEITO CRIATIVO (Card gira) */
+        /* =========================================== */
+        .effect-4 {
+            width: 100%;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .effect-4-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .effect-4:hover .effect-4-inner {
+            transform: rotateY(180deg);
+        }
+
+        .effect-4-front, .effect-4-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .effect-4-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+
+        .effect-4:hover .effect-4-front img {
+            transform: scale(1.1);
+        }
+
+        .effect-4-back {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .effect-4-back h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        /* =========================================== */
+        /* 5. EFEITO MINIMALISTA (Apenas texto aparece) */
+        /* =========================================== */
+        .effect-5 {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .effect-5 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .effect-5 .minimal-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .effect-5:hover img {
+            transform: scale(1.05);
+            filter: blur(2px);
+        }
+
+        .effect-5:hover .minimal-text {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* =========================================== */
+        /* 6. CARD RETANGULAR HORIZONTAL */
+        /* =========================================== */
+        .effect-6 {
+            display: flex;
+            width: 100%;
+            height: 200px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .effect-6 .img-container {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .effect-6 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .effect-6 .text-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .effect-6:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .effect-6:hover img {
+            transform: scale(1.1);
+        }
+
+        /* =========================================== */
+        /* 7. CARD RETANGULAR VERTICAL */
+        /* =========================================== */
+        .effect-7 {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .effect-7 .img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .effect-7 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .effect-7 .content {
+            padding: 20px;
+        }
+
+        .effect-7:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .effect-7:hover img {
+            transform: scale(1.1);
+        }
+
+        /* =========================================== */
+        /* 8. CARD RETANGULAR COM OVERLAY */
+        /* =========================================== */
+        .effect-8 {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .effect-8 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .effect-8 .overlay-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            padding-top: 40px;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .effect-8 .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            transform: scale(0);
+            transition: transform 0.3s ease 0.2s;
+        }
+
+        .effect-8:hover img {
+            transform: scale(1.1);
+        }
+
+        .effect-8:hover .overlay-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .effect-8:hover .badge {
+            transform: scale(1);
+        }
+
+        /* =========================================== */
+        /* 9. CARD COM EXPANSÃO */
+        /* =========================================== */
+        .effect-9 {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .effect-9 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .effect-9 .expand-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .effect-9:hover {
+            transform: scale(1.05);
+        }
+
+        .effect-9:hover img {
+            transform: scale(1.1);
+        }
+
+        .effect-9:hover .expand-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* =========================================== */
+        /* 10. GALERIA RESPONSIVA */
+        /* =========================================== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .gallery-content {
+            padding: 20px;
+        }
+
+        .gallery-title {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .gallery-description {
+            color: #666;
+            line-height: 1.5;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .gallery-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .gallery-tag {
+            background: #f8f9fa;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-card:hover .gallery-img img {
+            transform: scale(1.1);
+        }
+
+        .gallery-card:hover .gallery-title {
+            color: #667eea;
+        }
+
+        .gallery-card:hover .gallery-tag {
+            background: #667eea;
+            color: white;
+        }
+
+        /* UTILITÁRIOS */
+        .card-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .card-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #2ecc71;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: white;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .effect-6 {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .effect-6 .img-container {
+                width: 100%;
+                height: 200px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Showcase Completo de Efeitos Hover</h1>
+            <p class="subtitle">
+                Passe o mouse sobre cada card para ver os diferentes efeitos de hover. 
+                Clique em "Ver Código" para visualizar o CSS de cada exemplo.
+            </p>
+        </header>
+
+        <!-- SEÇÃO 1: Efeito Básico -->
+        <section id="section1">
+            <h2>1. Efeito Básico (Card aparece de baixo)</h2>
+            <div class="grid">
+                <div class="effect-1">
+                    <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400&h=300&fit=crop" 
+                         alt="Gato dormindo">
+                    <div class="info-card">
+                        <div class="card-title">Gato Dorminhoco</div>
+                        <p class="card-desc">Adora dormir em lugares confortáveis. Muito calmo e tranquilo.</p>
+                        <div class="tags">
+                            <span class="tag">Calmo</span>
+                            <span class="tag">Dócil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(1)">Ver Código CSS</button>
+            <pre id="code1" class="code-block">
+/* Container principal */
+.effect-1 {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.effect-1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Card de informações */
+.effect-1 .info-card {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 20px;
+    transform: translateY(100%); /* Começa escondido embaixo */
+    transition: transform 0.5s ease;
+    opacity: 0;
+}
+
+/* Efeitos no hover */
+.effect-1:hover img {
+    transform: scale(1.1);
+}
+
+.effect-1:hover .info-card {
+    transform: translateY(0); /* Sobe para posição normal */
+    opacity: 1;
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 2: Efeito Moderno -->
+        <section id="section2">
+            <h2>2. Efeito Moderno (Card desliza do lado)</h2>
+            <div class="grid">
+                <div class="effect-2">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba4e?w=400&h=300&fit=crop" 
+                         alt="Gato exótico">
+                    <div class="overlay">
+                        <div class="overlay-content">
+                            <div class="card-title">Gato Exótico</div>
+                            <p class="card-desc">Pelagem densa e personalidade única. Perfeito para apartamentos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(2)">Ver Código CSS</button>
+            <pre id="code2" class="code-block">
+.effect-2 {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.effect-2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.effect-2 .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,0,150,0.7), rgba(0,204,255,0.7));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transform: translateX(-100%); /* Começa fora da tela à esquerda */
+    transition: transform 0.5s ease;
+}
+
+/* Conteúdo com delay na animação */
+.effect-2 .overlay-content {
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease 0.2s; /* Delay de 0.2s */
+}
+
+/* Hover effects */
+.effect-2:hover img {
+    transform: scale(1.15);
+    filter: brightness(0.7);
+}
+
+.effect-2:hover .overlay {
+    transform: translateX(0); /* Desliza para dentro */
+}
+
+.effect-2:hover .overlay-content {
+    opacity: 1;
+    transform: translateY(0);
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 3: Efeito Elegante -->
+        <section id="section3">
+            <h2>3. Efeito Elegante (Zoom + Card flutuante)</h2>
+            <div class="grid">
+                <div class="effect-3">
+                    <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=400&h=350&fit=crop" 
+                         alt="Gato de óculos">
+                    <div class="price-tag">R$ 299,90</div>
+                    <div class="float-card">
+                        <div class="card-title">Gato Intelectual</div>
+                        <p class="card-desc">Adora ler livros e usar óculos. Perfeito para ambientes sofisticados.</p>
+                        <div class="price">R$ 299,90</div>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(3)">Ver Código CSS</button>
+            <pre id="code3" class="code-block">
+.effect-3 {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease; /* Anima o card inteiro */
+    cursor: pointer;
+}
+
+.effect-3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Card flutuante */
+.effect-3 .float-card {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(30px) scale(0.9); /* Começa maior e mais abaixo */
+    transition: all 0.4s ease 0.1s; /* Delay de 0.1s */
+    z-index: 2;
+}
+
+/* Tag de preço */
+.effect-3 .price-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ff4757;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    transform: scale(0); /* Começa invisível */
+    transition: transform 0.3s ease 0.2s; /* Delay maior */
+}
+
+/* Efeitos no hover */
+.effect-3:hover {
+    transform: translateY(-10px); /* Card sobe */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Sombra mais forte */
+}
+
+.effect-3:hover img {
+    transform: scale(1.1); /* Zoom na imagem */
+}
+
+.effect-3:hover .float-card {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Aparece na posição normal */
+}
+
+.effect-3:hover .price-tag {
+    transform: scale(1); /* Aparece */
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 4: Efeito Criativo -->
+        <section id="section4">
+            <h2>4. Efeito Criativo (Card gira 3D)</h2>
+            <div class="grid">
+                <div class="effect-4">
+                    <div class="effect-4-inner">
+                        <div class="effect-4-front">
+                            <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=400&h=300&fit=crop" 
+                                 alt="Gato curioso">
+                        </div>
+                        <div class="effect-4-back">
+                            <h3>Gato Curioso</h3>
+                            <p>Adora explorar novos ambientes. Muito ativo e brincalhão.</p>
+                            <div class="tags" style="margin-top: 15px;">
+                                <span class="tag">Ativo</span>
+                                <span class="tag">Brincalhão</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(4)">Ver Código CSS</button>
+            <pre id="code4" class="code-block">
+/* Container com perspectiva 3D */
+.effect-4 {
+    width: 100%;
+    height: 300px;
+    perspective: 1000px; /* Cria contexto 3D */
+}
+
+.effect-4-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; /* Mantém elementos filhos em 3D */
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+/* Gira 180 graus no hover */
+.effect-4:hover .effect-4-inner {
+    transform: rotateY(180deg);
+}
+
+/* Lado frontal e traseiro */
+.effect-4-front, .effect-4-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde o lado de trás quando virado */
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.effect-4-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s;
+}
+
+.effect-4:hover .effect-4-front img {
+    transform: scale(1.1);
+}
+
+/* Lado traseiro (começa virado) */
+.effect-4-back {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    transform: rotateY(180deg); /* Já começa virado */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+    text-align: center;
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 5: Efeito Minimalista -->
+        <section id="section5">
+            <h2>5. Efeito Minimalista (Apenas texto aparece)</h2>
+            <div class="grid">
+                <div class="effect-5">
+                    <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=400&h=300&fit=crop" 
+                         alt="Gato siamês">
+                    <div class="minimal-text">
+                        <div class="card-title">Gato Siamês</div>
+                        <p class="card-desc">Conhecido por sua elegância e olhos azuis marcantes.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(5)">Ver Código CSS</button>
+            <pre id="code5" class="code-block">
+.effect-5 {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.effect-5 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+}
+
+/* Texto minimalista */
+.effect-5 .minimal-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente */
+    padding: 20px;
+    opacity: 0;
+    transform: scale(0.8); /* Começa menor */
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+/* Hover effects */
+.effect-5:hover img {
+    transform: scale(1.05);
+    filter: blur(2px); /* Desfoque sutil na imagem */
+}
+
+.effect-5:hover .minimal-text {
+    opacity: 1;
+    transform: scale(1); /* Volta ao tamanho normal */
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 6: Card Retangular Horizontal -->
+        <section id="section6">
+            <h2>6. Card Retangular Horizontal (Imagem + Texto lado a lado)</h2>
+            <div class="grid">
+                <div class="effect-6">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba4e?w=200&h=200&fit=crop" 
+                             alt="Gato exótico">
+                    </div>
+                    <div class="text-content">
+                        <div class="card-title">Gato Exótico</div>
+                        <p class="card-desc">Conhecido por sua pelagem densa e rosto achatado. Personalidade calma e dócil, perfeito para famílias.</p>
+                        <div class="tags">
+                            <span class="tag">Calmo</span>
+                            <span class="tag">Carinhoso</span>
+                            <span class="tag">Indoor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(6)">Ver Código CSS</button>
+            <pre id="code6" class="code-block">
+/* Card horizontal usando flexbox */
+.effect-6 {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Container da imagem quadrada */
+.effect-6 .img-container {
+    width: 200px; /* Largura fixa */
+    height: 200px; /* Altura igual à largura (quadrado) */
+    overflow: hidden;
+    flex-shrink: 0; /* Impede que encolha */
+}
+
+.effect-6 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Container do texto */
+.effect-6 .text-content {
+    flex: 1; /* Ocupa todo o espaço restante */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Hover effects */
+.effect-6:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.effect-6:hover img {
+    transform: scale(1.1);
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 7: Card Retangular Vertical -->
+        <section id="section7">
+            <h2>7. Card Retangular Vertical (Imagem em cima, texto embaixo)</h2>
+            <div class="grid">
+                <div class="effect-7">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=400&h=200&fit=crop" 
+                             alt="Gato de óculos">
+                    </div>
+                    <div class="content">
+                        <div class="card-title">Gato Intelectual</div>
+                        <p class="card-desc">Adora ambientes tranquilos e livros. Perfeito para apartamentos e pessoas que trabalham em casa.</p>
+                        <div class="price">R$ 299,90</div>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(7)">Ver Código CSS</button>
+            <pre id="code7" class="code-block">
+.effect-7 {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Wrapper da imagem */
+.effect-7 .img-wrapper {
+    width: 100%;
+    height: 200px; /* Altura fixa para a imagem */
+    overflow: hidden;
+}
+
+.effect-7 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Conteúdo textual */
+.effect-7 .content {
+    padding: 20px;
+}
+
+/* Hover effects */
+.effect-7:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.effect-7:hover img {
+    transform: scale(1.1);
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 8: Card Retangular com Overlay -->
+        <section id="section8">
+            <h2>8. Card Retangular com Overlay (Imagem de fundo)</h2>
+            <div class="grid">
+                <div class="effect-8">
+                    <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400&h=250&fit=crop" 
+                         alt="Gato dormindo">
+                    <div class="badge">Popular</div>
+                    <div class="overlay-content">
+                        <div class="card-title">Gato Dorminhoco</div>
+                        <p class="card-desc">Pode dormir até 16 horas por dia. Muito carinhoso quando acordado.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(8)">Ver Código CSS</button>
+<pre id="code8" class="code-block">
+.effect-8 {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.effect-8 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Overlay com gradiente */
+.effect-8 .overlay-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8)); /* Gradiente transparente → escuro */
+    color: white;
+    padding: 20px;
+    padding-top: 40px; /* Mais espaço no topo para o gradiente */
+    transform: translateY(30px); /* Começa mais abaixo */
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+/* Badge */
+.effect-8 .badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ff4757;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    transform: scale(0); /* Começa invisível */
+    transition: transform 0.3s ease 0.2s;
+}
+
+/* Hover effects */
+.effect-8:hover img {
+    transform: scale(1.1);
+}
+
+.effect-8:hover .overlay-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.effect-8:hover .badge {
+    transform: scale(1);
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 9: Card com Expansão -->
+        <section id="section9">
+            <h2>9. Card com Efeito de Expansão</h2>
+            <div class="grid">
+                <div class="effect-9">
+                    <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=400&h=250&fit=crop" 
+                         alt="Gato curioso">
+                    <div class="expand-content">
+                        <div class="card-title">Gato Curioso</div>
+                        <p class="card-desc">Adora explorar novos ambientes. Muito ativo e brincalhão. Ideal para casas com espaço.</p>
+                        <div class="tags" style="margin-top: 10px;">
+                            <span class="tag">Ativo</span>
+                            <span class="tag">Brincalhão</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(9)">Ver Código CSS</button>
+<pre id="code9" class="code-block">
+.effect-9 {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s ease; /* Anima o card inteiro */
+}
+
+.effect-9 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Conteúdo que expande */
+.effect-9 .expand-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.9); /* Começa menor */
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+/* Hover effects */
+.effect-9:hover {
+    transform: scale(1.05); /* Card cresce levemente */
+}
+
+.effect-9:hover img {
+    transform: scale(1.1);
+}
+
+.effect-9:hover .expand-content {
+    opacity: 1;
+    transform: scale(1); /* Volta ao tamanho normal */
+}</pre>
+        </section>
+
+        <!-- SEÇÃO 10: Galeria Responsiva -->
+        <section id="section10">
+            <h2>10. Galeria de Cards Retangulares Responsiva</h2>
+            <div class="gallery">
+                <!-- Card 1 -->
+                <div class="gallery-card">
+                    <div class="gallery-img">
+                        <div class="gallery-badge">Novo</div>
+                        <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba4e?w=280&h=200&fit=crop" 
+                             alt="Gato exótico">
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-title">Gato Exótico</div>
+                        <p class="gallery-description">Conhecido por sua pelagem densa e rosto achatado. Personalidade calma e dócil.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Calmo</span>
+                            <span class="gallery-tag">Carinhoso</span>
+                            <span class="gallery-tag">Indoor</span>
+                        </div>
+                        <div class="price">R$ 299,90</div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="gallery-card">
+                    <div class="gallery-img">
+                        <div class="gallery-badge" style="background: #2ecc71;">Disponível</div>
+                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=280&h=200&fit=crop" 
+                             alt="Gato de óculos">
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-title">Gato Intelectual</div>
+                        <p class="gallery-description">Adora ambientes tranquilos e livros. Perfeito para apartamentos.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Inteligente</span>
+                            <span class="gallery-tag">Calmo</span>
+                            <span class="gallery-tag">Caseiro</span>
+                        </div>
+                        <div class="price">R$ 349,90</div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="gallery-card">
+                    <div class="gallery-img">
+                        <div class="gallery-badge" style="background: #ff9f43;">Popular</div>
+                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=280&h=200&fit=crop" 
+                             alt="Gato dormindo">
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-title">Gato Dorminhoco</div>
+                        <p class="gallery-description">Pode dormir até 16 horas por dia. Muito carinhoso quando acordado.</p>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Calmo</span>
+                            <span class="gallery-tag">Dócil</span>
+                            <span class="gallery-tag">Silencioso</span>
+                        </div>
+                        <div class="price">R$ 259,90</div>
+                    </div>
+                </div>
+            </div>
+            <button class="toggle-code" onclick="toggleCode(10)">Ver Código CSS</button>
+<pre id="code10" class="code-block">
+/* Grid responsivo */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Card base */
+.gallery-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Curva de animação especial */
+    cursor: pointer;
+}
+
+/* Imagem */
+.gallery-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Badge */
+.gallery-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff4757;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+/* Conteúdo */
+.gallery-content {
+    padding: 20px;
+}
+
+.gallery-title {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.gallery-description {
+    color: #666;
+    line-height: 1.5;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Tags */
+.gallery-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.gallery-tag {
+    background: #f8f9fa;
+    color: #666;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.gallery-card:hover {
+    transform: translateY(-10px); /* Sobe */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Sombra mais forte */
+}
+
+.gallery-card:hover .gallery-img img {
+    transform: scale(1.1); /* Zoom na imagem */
+}
+
+.gallery-card:hover .gallery-title {
+    color: #667eea; /* Muda cor do título */
+}
+
+.gallery-card:hover .gallery-tag {
+    background: #667eea; /* Muda cor das tags */
+    color: white;
+}</pre>
+        </section>
+
+        <footer>
+            <p>🎉 <strong>Showcase Completo de Efeitos Hover</strong></p>
+            <p>Cada exemplo inclui HTML e CSS completo. Copie o código que mais gostar e adapte ao seu projeto!</p>
+            <p>✨ Dica: Experimente modificar as cores, tempos de transição e efeitos para personalizar ainda mais!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Função para mostrar/esconder código
+        function toggleCode(sectionNumber) {
+            const codeBlock = document.getElementById(`code${sectionNumber}`);
+            const button = event.target;
+            
+            if (codeBlock.style.display === 'block') {
+                codeBlock.style.display = 'none';
+                button.textContent = 'Ver Código CSS';
+            } else {
+                codeBlock.style.display = 'block';
+                button.textContent = 'Ocultar Código';
+            }
+        }
+
+        // Adiciona instruções interativas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adiciona tooltip aos cards
+            const cards = document.querySelectorAll('[class^="effect-"], .gallery-card');
+            cards.forEach(card => {
+                card.setAttribute('title', 'Passe o mouse para ver o efeito!');
+            });
+        });
+    </script>
+</body>
+</html>

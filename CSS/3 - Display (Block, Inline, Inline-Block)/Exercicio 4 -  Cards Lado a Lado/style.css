@@ -1,0 +1,22 @@
+:root{
+    --base-height: 360px;
+    --base-width: 250px;
+}
+
+body{
+    background-color:rgb(208, 5, 5);
+    font-family: "Roboto", sans-serif;
+}
+.card{
+    display: inline-block;
+    height: var(--base-height);
+    width: var(--base-width);
+    padding: 20px;
+    vertical-align: top;
+
+}.card:hover{
+    /*height: calc(var(--base-height) * 1.1);
+    width: calc(var(--base-width) * 1.1);*/
+    transform: translateX(5px);
+    box-shadow:2px 5px 5px rgba(0,0,0,0.1);
+}

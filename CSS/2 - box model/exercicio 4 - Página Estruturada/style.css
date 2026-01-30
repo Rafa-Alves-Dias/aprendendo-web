@@ -1,0 +1,51 @@
+.cabecalho{
+    width: auto;
+    padding:20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: #653b8d;
+    color: white;
+
+}
+.principal{
+    width: auto;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(194, 192, 192);
+    color: #212121;
+}
+.rodape{
+    width: auto;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    background-color: #1e1e1e;
+    color: white;
+
+}
+.btn{
+    padding: 20px;
+    margin: 4px;
+    border: 4px;
+    border-radius: 10px;
+}
+
+#btnLastNext{
+    background-color: blueviolet;
+    color: white;
+}
+
+#btnWater{
+    background-color: #4592c4;
+    color: white;
+}
+
+#btnPlant{
+    background-color: #9bcc50;
+    color: #212121
+}
+#btnElectric{
+    background-color: #eed535;
+    color: #212121
+}
