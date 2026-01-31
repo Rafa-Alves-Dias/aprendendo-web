@@ -1,6 +1,9 @@
 :root{
-    --img-height: 250px;
-    --img-width: 250px;
+    --img-height: 200px;
+    --img-width: 200px;
+
+    --crd-height: 450px;
+    --crd-width: 400px;
 }
 body{
     background-color: /*#f3f3f2;*/ #424242;
@@ -24,15 +27,84 @@ a{
 }.menu:hover{
     background-color: #fffa00;
 }
-
-img{
+.container-principal{
+    position: relative;
     height: var(--img-height);
     width: var(--img-width);
+    margin: 0 auto;
+    transition: all 0.5s cubic-bezier(0.25, 046, 0.45, 0.94);
+    cursor: pointer;
+
+    /*display: inline-block;
+    padding: 30px;*/
+}
+.container-principal .container-imagem{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    transition: all 0.5s ease;
+}
+.container-principal img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 13px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.5s ease;
 }
 
-.lendario{
-    display: inline-block;
+
+.container-principal .card-vertical{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--crd-height);
+    width: var(--crd-width);
+    background-color: #fffa00;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s ease;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-principal .conteudo-card{
+    flex: 1;
     padding: 30px;
+    padding-top:200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease 0.2s;
+}
+
+.container-principal:hover{
+    height: var(--crd-height);
+    width: var(--crd-width);
+}
+
+.container-principal:hover .card-vertical{
+    opacity: 1;
+    transform: scale(1);
+}
+
+.container-principal:hover img{
+    height: scale(1.25);
+    width: scale(1.25);
+    transform: translateX(25px) translateY(15px) scale(1.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.container-principal:hover .conteudo-card{
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .corpo-pagina{
