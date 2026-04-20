@@ -1,0 +1,12 @@
+a{
+    text-decoration: none;
+    color: aliceblue;
+
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgb(29, 70, 146);
+    padding: 10px;
+}

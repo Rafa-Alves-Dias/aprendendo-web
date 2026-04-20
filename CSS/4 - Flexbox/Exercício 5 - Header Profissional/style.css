@@ -1,0 +1,18 @@
+a{
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: "SN Pro", sans-serif;
+}
+img{
+    width:10vh;
+    height: auto;
+}
+header{
+    background-color: rgb(2, 2, 55);
+    padding:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

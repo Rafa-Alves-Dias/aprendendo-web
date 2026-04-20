@@ -1,0 +1,69 @@
+
+body{
+    font-family: "SN Pro", sans-serif;
+    font-size: small;
+    margin: 0;
+    padding: 20px; /* Adicione um espaço interno */
+    background-color: #f0f0f0; /* Fundo claro para a sombra aparecer melhor */
+}
+img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: 250px;      /* Altura máxima controlada */
+    object-fit: contain;
+    margin: 0 auto 20px;    /* Margem inferior opcional */
+}
+button{
+    border: none;
+    border-radius: 4px;
+    font-size: medium;
+    font-weight: bold;
+    font-family: inherit;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+a{
+    display: inline-block;
+}
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+.triforce{
+    flex: 1;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.3);
+    border: 2px solid #000000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+#sabedoria{
+    background-color: #64b9f2;
+    border-color: #022754;
+}
+#poder{
+    background-color: #ff5f39;
+    border-color: #b61718;
+}
+#coragem{
+    background-color: #81b755;
+    border-color: #025c28;
+}
+
+.nayru{
+    background-color: #1a4c48;
+    color:#dbd1fa
+}
+.din{
+    background-color: #6a0000;
+    color:#ffdcd7;
+}
+.farore{
+    background-color: #013720;
+    color:#e5fee8
+}

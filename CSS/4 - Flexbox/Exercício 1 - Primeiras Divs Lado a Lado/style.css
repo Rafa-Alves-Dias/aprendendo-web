@@ -1,0 +1,24 @@
+body{
+    background-color: rgb(26, 26, 26);
+}
+.caixa{
+    display: flex;
+    padding: 100px;
+    gap: 20px;
+    font-size: 90px;
+}
+#agua{
+    background-color: aquamarine;
+}
+
+#fogo{
+    background-color: crimson;
+}
+
+#terra{
+    background-color: chartreuse;
+}
+
+#ar{
+    background-color: azure;
+}

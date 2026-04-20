@@ -1,0 +1,80 @@
+body{
+    font-family: "SN Pro", sans-serif;
+}
+/*-------------------------- cabecalho ----------------- */
+header{
+    background-color: #e60012;
+    color: #fff;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+.logo{
+    height: 10vh;
+}
+
+/*-------------------------- main ----------------- */
+main{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.banner{
+    flex: 1;
+
+}
+/*-------------------------- barra lateral ----------------- */
+h1{
+    color:  rgb(72, 72, 72);
+    margin: 3px;
+}
+aside{
+    width: 250px;
+    flex-shrink: 0;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+
+    box-shadow: 0 10px 10px -10px rgba(0,0,0,0.5), /* sombra baixo */
+              10px 0 15px -10px rgba(0,0,0,0.5), /* sombra direita */
+              -10px 0 15px -10px rgba(0,0,0,0.5); /* sombra esquerda */
+}
+button{
+    background-color: #e60012;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: x-large;
+    margin: 2px;
+
+}
+
+/*-------------------------- rodape ----------------- */
+footer{
+    background-color: #484848;
+    color: #fff;
+    font-size: small;
+    height: 10vh;
+    width: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.br-emoji{
+    height: 2vh;
+}
