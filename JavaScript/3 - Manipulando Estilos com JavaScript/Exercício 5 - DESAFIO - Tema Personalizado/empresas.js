@@ -1,96 +1,114 @@
 let h1Titulo = document.getElementById("titulo");
 let h1Catalogo = document.getElementById("jogos");
-let h1Textos = document.getElementById("texto");
 
-let imageCapa = document.getElementById("capaEmpresas");
+let capaHome = document.querySelector("#capaEmpresas .capa-padrao");
+let capaCapcom = document.querySelector("#capaEmpresas .capa-capcom");
+let capaSega = document.querySelector("#capaEmpresas .capa-sega");
+let capaUbisoft = document.querySelector("#capaEmpresas .capa-ubisoft");
 
+let buttonHome = document.getElementById("btnHome");
 let buttonCapcom = document.getElementById("btnCapcom");
 let buttonSega = document.getElementById("btnSega");
 let buttonUbisoft = document.getElementById("btnUbisoft");
-let buttonHome = document.getElementById("btnHome");
 
 
-let imageCatalogo = document.getElementById("imgJogos");
+let catalogoHome = document.querySelector("#imgJogos .empresas-banner");
+let catalogoCapcom = document.querySelector("#imgJogos .jogos-capcom");
+let catalogoSega = document.querySelector("#imgJogos .jogos-sega");
+let catalogoUbisoft = document.querySelector("#imgJogos .jogos-ubisoft");
 
 function padrao(){
-    remove();
-    buttonHome.classList.add("remove");
+    reseta();
     
     document.body.classList.add("tema-padrao");
-
-    h1Catalogo.textContent = "Plataformas"
-    h1Textos.classList.add("padrao");
-
-    imageCapa.classList.add("capa-padrao");
-    imageCatalogo.classList.add("empresas-banner");
     
-    document.button.classList.add("padrao");
+    h1Catalogo.textContent = "Plataformas"
+    h1Titulo.classList.add("padrao");
+    h1Catalogo.classList.add("padrao");
+    
+    capaHome.style.display = "flex";
+
+    [buttonCapcom, buttonSega,buttonUbisoft].forEach(btn => { 
+        btn.classList.add("ativo");
+    });
+
+    catalogoHome.classList.add("ativo");
 }
 function capcom(){
-remove();
-    buttonCapcom.classList.add("remove");
+    reseta();
     
     document.body.classList.add("tema-capcom");
-
-    h1Catalogo.textContent = "Últimos lançamentos"
-    h1Textos.classList.add("capcom");
-
-    imageCapa.classList.add("capa-capcom");
-    imageCatalogo.classList.add("jogos-capcom");
     
-    document.button.classList.add("capcom");
+    h1Catalogo.textContent = "Últimos lançamentos"
+    h1Titulo.classList.add("capcom");
+    h1Catalogo.classList.add("capcom");
+    
+    capaCapcom.style.display = "flex";
+
+    [buttonHome, buttonSega,buttonUbisoft].forEach(btn => { 
+        btn.classList.add("ativo");
+    });
+    
+    catalogoCapcom.classList.add("ativo");
 }
 function sega(){
-remove();
-    buttonSega.classList.add("remove");
+    reseta();
     
     document.body.classList.add("tema-sega");
-
-    h1Catalogo.textContent = "Últimos lançamentos"
-    h1Textos.classList.add("sega");
-
-    imageCapa.classList.add("capa-sega");
-    imageCatalogo.classList.add("jogos-sega");
     
-    document.button.classList.add("sega");
+    h1Catalogo.textContent = "Últimos lançamentos"
+    h1Titulo.classList.add("sega");
+    h1Catalogo.classList.add("sega");
+    
+    capaSega.style.display = "flex";
+
+    [buttonHome, buttonCapcom,buttonUbisoft].forEach(btn => { 
+        btn.classList.add("ativo");
+    });
+    
+    catalogoSega.classList.add("ativo");
 }
 function ubisoft(){
-remove();
-    buttonUbisoft.classList.add("remove");
+    reseta();
     
     document.body.classList.add("tema-ubisoft");
-
-    h1Catalogo.textContent = "Últimos lançamentos"
-    h1Textos.classList.add("ubisoft");
-
-    imageCapa.classList.add("capa-ubisoft");
-    imageCatalogo.classList.add("jogos-ubisoft");
     
-    document.button.classList.add("ubisoft");
+    h1Catalogo.textContent = "Últimos lançamentos"
+    h1Titulo.classList.add("ubisoft");
+    h1Catalogo.classList.add("ubisoft");
+    
+    capaUbisoft.style.display = "flex";
+
+    [buttonHome, buttonCapcom,buttonSega].forEach(btn => { 
+        btn.classList.add("ativo");
+    });
+    
+    catalogoUbisoft.classList.add("ativo");
 }
-function remove(){
+function reseta(){
     document.body.classList.remove("tema-padrao");
     document.body.classList.remove("tema-capcom");
     document.body.classList.remove("tema-sega");
     document.body.classList.remove("tema-ubisoft");
 
-    h1Textos.classList.remove("padrao");
-    h1Textos.classList.remove("capcom");
-    h1Textos.classList.remove("sega");
-    h1Textos.classList.remove("ubisoft");
+    h1Titulo.classList.remove("padrao");
+    h1Catalogo.classList.remove("padrao");
+    h1Titulo.classList.remove("capcom");
+    h1Catalogo.classList.remove("capcom");
+    h1Titulo.classList.remove("sega");
+    h1Catalogo.classList.remove("sega");
+    h1Titulo.classList.remove("ubisoft");
+    h1Catalogo.classList.remove("ubisoft");
 
-    imageCatalogo.classList.remove("padrao");
-    imageCatalogo.classList.remove("capcom");
-    imageCatalogo.classList.remove("sega");
-    imageCatalogo.classList.remove("ubisoft");
+    [btnHome, btnCapcom, btnSega, btnUbisoft].forEach(btn => btn.classList.remove("ativo"));
 
-    document.button.classList.remove("padrao");
-    document.button.classList.remove("capcom");
-    document.button.classList.remove("sega");
-    document.button.classList.remove("ubisoft");
+    catalogoHome.style.display = "none";
+    catalogoCapcom.style.display = "none";
+    catalogoSega.style.display = "none";
+    catalogoUbisoft.style.display = "none";
 }
 
+buttonHome.addEventListener("click", padrao)
 buttonCapcom.addEventListener("click", capcom)
 buttonSega.addEventListener("click", sega)
 buttonUbisoft.addEventListener("click", ubisoft)
-buttonHome.addEventListener("click", padrao)
