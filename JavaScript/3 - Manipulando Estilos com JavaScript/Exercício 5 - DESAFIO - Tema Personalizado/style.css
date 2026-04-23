@@ -1,0 +1,69 @@
+body{
+    font-family: "SN Pro", sans-serif;
+}
+/*---------------------- fundo ----------------------*/
+.tema-padrao{
+    background-color: #fff;
+}
+
+/*---------------------- h1 e h2 ----------------------*/
+#texto.padrao{
+    color: #001d5f;
+}
+/*---------------------- capa ----------------------*/
+#capaEmpresas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+#capaEmpresas img{
+    height: 100%;
+    width: auto;
+}
+.capa-capcom.remove, .capa-sega.remove, .capa-ubisoft.remove, .capa-padrao.remove{
+    display: none;
+}
+/*.capa-padrao, .capa-capcom, .capa-sega, .capa-ubisoft{
+  
+}*/
+/*----------------------- butoes ---------------------*/
+#botoes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+}
+button{
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10%;
+    border: none;
+}
+button.padrao{
+    background-color: #001d5f;
+    color: #00e7f6;
+}
+#btnCapcom.remove, #btnSega.remove, #btnUbisoft.remove, #btnHome.remove{
+    display: none;
+}
+/*---------------------- imagens ----------------------*/
+.empresas-banner img{
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+#imgJogos img{
+    border-radius: 5%;
+    height: 60vh;
+    width: auto;
+    margin-left: 5px;
+}
+.empresas-banner{
+    display: flex;
+    flex-direction: row;
+}
+.jogos-capcom.remove, .jogos-sega.remove, .jogos-ubisoft.remove{
+    display: none;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora de desconto</title>
+</head>
+<body>
+    <h1>Calculadora de desconto</h1>
+    
+    <label>Preço do produto(R$):</label><br>
+    <input type="number" placeholder="Ex: 5.00 ou 5,00" id="valorReais"><br>
+    <label>Valor do desconto(%):</label><br>
+    <input type="number" placeholder="Ex: 20" id="valorDesconto">
+    <button id="btnCalcular">calcular</button>
+    <div id="fundo">
+        <p id="descontoFinal"></p>
+        <p id="precoFinal"></p>
+    </div>
+    <script src="calculadoraDesconto.js"></script>
+</body>
+</html>

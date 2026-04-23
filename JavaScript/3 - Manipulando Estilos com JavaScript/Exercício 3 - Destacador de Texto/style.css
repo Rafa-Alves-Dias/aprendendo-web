@@ -1,0 +1,41 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 55px;
+}
+.tema-claro{
+    background-color: white;
+}
+.tema-escuro{
+    background-color: black;
+}
+.organizacao{
+    display: flex;
+    gap: 7px;
+    transform: translateY(100px);
+}
+button{
+    padding: 10px 20px;
+    font-size: 15px;
+}
+input{
+    padding: 10px 20px;
+    font-size: 15px;
+}
+
+button.ativo{
+    background-color: #f6ffb3;
+}
+input.ativo{
+    background-color: #f6ffb3;
+}
+#texto{
+    color: #ffff00;
+    font-size: 70px;
+    display: block;
+    max-width: 90vw;          
+    word-wrap: break-word;
+    white-space: normal;
+}

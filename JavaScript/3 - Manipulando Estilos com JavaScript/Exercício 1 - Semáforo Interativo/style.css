@@ -1,0 +1,64 @@
+:root{
+    --circle-diameter: 150px;
+    --width: 200px;
+}
+body{
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.corpo{
+    width: var(--width);
+    aspect-ratio: 2 / 5;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 17px;
+}
+#verde, #vermelho, #amarelo{
+    height: var(--circle-diameter);
+    width: var(--circle-diameter);
+    border-radius: 50%;
+}
+#verde{
+    background-color: rgb(39, 56, 39);
+}
+#amarelo{
+    background-color: rgb(54, 54, 38);
+}
+#vermelho{
+    background-color: rgb(56, 42, 42);
+}
+
+#verde.ativo{
+    background-color: rgb(71, 249, 71);
+}
+#amarelo.ativo{
+    background-color: rgb(252, 252, 66);
+}
+#vermelho.ativo{
+    background-color: rgb(252, 69, 69);
+}
+
+button{
+    display: flex;
+    width: var(--width);
+    aspect-ratio: 10 / 1.3;
+    justify-content: center;
+    align-items: center;
+    margin: 6px 0px;
+    border-radius: 4px;
+}
+
+#btnVerde.ativo{
+    background-color: rgb(71, 249, 71);
+}
+#btnAmarelo.ativo{
+    background-color: rgb(252, 252, 66);
+}
+#btnVermelho.ativo{
+    background-color: rgb(252, 69, 69);
+}
