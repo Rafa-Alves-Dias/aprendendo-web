@@ -1,3 +1,5 @@
+/* FALTOU CONSEGUIR MUDAR A COR DOS BOTOES E EU ACHO MELHOR COLOCAR DEGRADE SO NO DA UBISOFT*/ 
+
 let h1Titulo = document.getElementById("titulo");
 let h1Catalogo = document.getElementById("jogos");
 
@@ -17,6 +19,25 @@ let catalogoCapcom = document.querySelector("#imgJogos .jogos-capcom");
 let catalogoSega = document.querySelector("#imgJogos .jogos-sega");
 let catalogoUbisoft = document.querySelector("#imgJogos .jogos-ubisoft");
 
+function reseta(){
+    document.body.classList.remove("tema-padrao", "tema-capcom", "tema-sega", "tema-ubisoft");
+    
+    h1Titulo.classList.remove("padrao", "capcom", "sega", "ubisoft");
+    h1Catalogo.classList.remove("padrao", "capcom", "sega", "ubisoft");
+    h1Catalogo.textContent = "";
+
+    [buttonHome, buttonCapcom, buttonSega, buttonUbisoft].forEach(btn => {
+        btn.style.display = "none";
+    });
+    
+    [capaHome, capaCapcom, capaSega, capaUbisoft].forEach(capa => {
+        capa.style.display = "none";
+    });
+    
+    [catalogoHome, catalogoCapcom, catalogoSega, catalogoUbisoft].forEach(catalogo => {
+        catalogo.style.display = "none";
+    });
+}
 function padrao(){
     reseta();
     
@@ -29,10 +50,10 @@ function padrao(){
     capaHome.style.display = "flex";
 
     [buttonCapcom, buttonSega,buttonUbisoft].forEach(btn => { 
-        btn.classList.add("ativo");
+        btn.style.display = "flex";
     });
 
-    catalogoHome.classList.add("ativo");
+    catalogoHome.style.display = "flex";
 }
 function capcom(){
     reseta();
@@ -46,10 +67,10 @@ function capcom(){
     capaCapcom.style.display = "flex";
 
     [buttonHome, buttonSega,buttonUbisoft].forEach(btn => { 
-        btn.classList.add("ativo");
+        btn.style.display = "flex";
     });
     
-    catalogoCapcom.classList.add("ativo");
+    catalogoCapcom.style.display = "flex";
 }
 function sega(){
     reseta();
@@ -63,10 +84,10 @@ function sega(){
     capaSega.style.display = "flex";
 
     [buttonHome, buttonCapcom,buttonUbisoft].forEach(btn => { 
-        btn.classList.add("ativo");
+        btn.style.display = "flex";
     });
     
-    catalogoSega.classList.add("ativo");
+    catalogoSega.style.display = "flex";
 }
 function ubisoft(){
     reseta();
@@ -80,35 +101,14 @@ function ubisoft(){
     capaUbisoft.style.display = "flex";
 
     [buttonHome, buttonCapcom,buttonSega].forEach(btn => { 
-        btn.classList.add("ativo");
+        btn.style.display = "flex";
     });
     
-    catalogoUbisoft.classList.add("ativo");
-}
-function reseta(){
-    document.body.classList.remove("tema-padrao");
-    document.body.classList.remove("tema-capcom");
-    document.body.classList.remove("tema-sega");
-    document.body.classList.remove("tema-ubisoft");
-
-    h1Titulo.classList.remove("padrao");
-    h1Catalogo.classList.remove("padrao");
-    h1Titulo.classList.remove("capcom");
-    h1Catalogo.classList.remove("capcom");
-    h1Titulo.classList.remove("sega");
-    h1Catalogo.classList.remove("sega");
-    h1Titulo.classList.remove("ubisoft");
-    h1Catalogo.classList.remove("ubisoft");
-
-    [btnHome, btnCapcom, btnSega, btnUbisoft].forEach(btn => btn.classList.remove("ativo"));
-
-    catalogoHome.style.display = "none";
-    catalogoCapcom.style.display = "none";
-    catalogoSega.style.display = "none";
-    catalogoUbisoft.style.display = "none";
+    catalogoUbisoft.style.display = "flex";
 }
 
-buttonHome.addEventListener("click", padrao)
-buttonCapcom.addEventListener("click", capcom)
-buttonSega.addEventListener("click", sega)
-buttonUbisoft.addEventListener("click", ubisoft)
+
+buttonHome.addEventListener("click", padrao);
+buttonCapcom.addEventListener("click", capcom);
+buttonSega.addEventListener("click", sega);
+buttonUbisoft.addEventListener("click", ubisoft);

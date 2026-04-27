@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: Arial, sans-serif;
+    padding: 50px 20px;
+}
+
+.container {
+    background-color: white;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #667eea;
+}
+
+li:hover {
+    background-color: #ebebeb;
+}
+
+.item-texto {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+}
+
+
+
+/* Estilo para o contador */
+#contador.display {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e8eaf6;
+    border-radius: 5px;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+}
+/*------------------------------- botoes ---------------------------------------*/
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap; /* Evita que o texto quebre */
+}
+/* botao adicionar */
+#btnAdicionar{
+    background-color: #667eea;
+    color: white;
+}
+#btnAdicionar:hover{
+    background-color: #5568d3;
+}
+/* botao comprado + botao remover*/
+.botoes-container{
+    display: flex;
+    gap: 5px;
+}
+.btn-remover, .btn-comprado{
+    padding: 8px 16px;
+    font-size: 14px;
+}
+/* botao remover */
+.btn-remover, .btn-remover-tudo{
+    background-color: #f44336;
+    color: white;
+}
+.btn-remover:hover, .btn-remover-tudo:hover {
+    background-color: #d32f2f;
+}
+/* botao comprado*/
+.btn-comprado{
+    background-color: #36f475;
+    color: white;
+}
+
+.btn-comprado:hover {
+    background-color: rgb(11, 203, 75)
+}
+.btn-comprado:disabled{
+    background-color: #83a990;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/*texto riscado: */
+.item-texto.comprado {
+    text-decoration: line-through;
+    color: #999;
+}
+
+li.comprado{
+    background-color: #cbffdd;
+    border-left: 4px solid #36f475;
+}
+
+li.comprado:hover{
+    background-color: #bcf3cd;
+}
+/* botao remover tudo*/
+.btn-remover-tudo{
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 100%;
+}
+/* botao editar: */
+.btn-editar{
+    background-color: #764ba2;
+    color: white;
+}
+.btn-editar:hover{
+    background-color: #653a8f;
+}
+/* botao mais: */
+.btn-mais, .btn-menos {
+    padding: 8px 16px;
+    line-height: 1; /* Evita que o botão fique mais alto */
+}
+.btn-mais{
+    background-color: rgb(253, 253, 47);
+    color: black;
+}
+.btn-mais:hover{
+    background-color: rgb(212, 212, 33);
+}
+
+/* botao menos: */
+.btn-menos{
+    background-color: rgb(252, 58, 188);
+    color: black;
+}
+.btn-menos:hover{
+    background-color: rgb(199, 41, 147);
+}
+.quant-itens{
+    font-size: 15px;
+    font-weight: bold;
+    min-width: 30px;
+    text-align: center;
+    line-height: 32px; /* Alinha verticalmente com os botões */
+}
+.botoes-container .btn-quant{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div-botoes{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

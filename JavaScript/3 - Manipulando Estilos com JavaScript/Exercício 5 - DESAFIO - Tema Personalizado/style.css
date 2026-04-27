@@ -1,9 +1,27 @@
 body{
     font-family: "SN Pro", sans-serif;
 }
+.remove{
+    display: none;
+}
 /*---------------------- fundo ----------------------*/
 .tema-padrao{
     background-color: #fff;
+}
+.tema-capcom{
+    /*background-image: linear-gradient(to top, #020ae1,  #7E8179, #fAf811);*/
+    background-image: linear-gradient(to top, 
+        #004AB3 0%,
+        #1E6E8C 20%,
+        #9EAD8A 50%,   /* neutro claro no meio */
+        #E8C24A 75%,
+        #FFD723 100%
+    );
+    /*background: radial-gradient(circle at center, 
+   #FFD723 0%, 
+   #A9B320 33%, 
+   #2B7A5C 66%, 
+   #004AB3 100%);*/
 }
 
 /*---------------------- h1 e h2 ----------------------*/
@@ -21,12 +39,7 @@ body{
     height: 100%;
     width: auto;
 }
-.capa-capcom.ativo, .capa-sega.ativo, .capa-ubisoft.ativo, .capa-padrao.ativo{
-    display: flex;
-}
-/*.capa-padrao, .capa-capcom, .capa-sega, .capa-ubisoft{
-  
-}*/
+
 /*----------------------- botoes ---------------------*/
 #botoes{
     display: flex;
@@ -47,9 +60,7 @@ button.padrao{
     background-color: #001d5f;
     color: #00e7f6;
 }
-#btnCapcom.ativo, #btnSega.ativo, #btnUbisoft.ativo, #btnHome.ativo{
-    display: flex;
-}
+
 /*---------------------- imagens ----------------------*/
 .empresas-banner img{
     aspect-ratio: 2 / 3;
@@ -64,7 +75,4 @@ button.padrao{
 .empresas-banner{
     display: flex;
     flex-direction: row;
-}
-.jogos-capcom.ativo, .jogos-sega.ativo, .jogos-ubisoft.ativo, .empresas-banner{
-    display: flex;
 }
