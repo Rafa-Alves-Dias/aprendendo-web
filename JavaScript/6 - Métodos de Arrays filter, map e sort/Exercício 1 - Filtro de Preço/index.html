@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo com Filtros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🛍️ Catálogo de Produtos</h1>
+
+        <div class="filtros">
+            <input type="text" id="busca" placeholder="🔍 Buscar produto">
+
+            <select id="categoria">
+                <option value="todos">Todas as categorias</option>
+                <option value="Eletrônicos">Eletrônicos</option>
+                <option value="Periféricos">Periféricos</option>
+            </select>
+
+            <select id="ordenar">
+                <option value="padrao">Ordenar por...</option>
+                <option value="nome">Nome (A-Z)</option>
+                <option value="preco-asc">Preço (Menor)</option>
+                <option value="preco-desc">Preço (Maior)</option>
+            </select>
+            <!-- 1.1 - criando um select para a faixa de preço -->
+            <select id="faixaPreco">
+                <option value="nenhum">nenhum</option>
+                <option value="ate100">menos de R$100</option>
+                <option value="entre100e500">entre R$100 e R$500 </option>
+                <option value="acima500">mais de R$500</option>
+            </select> 
+            <button id="btnLimpar">Limpar</button>
+        </div>
+
+        <p id="contador">Exibindo <strong>0</strong> produtos</p>
+
+        <div id="listaProdutos"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
