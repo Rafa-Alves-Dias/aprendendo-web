@@ -84,7 +84,21 @@ function filtrarProdutos() {
             return produto.categoria === categoriaSelecionada;
         });
     }
-
+    // BOA PRÁTICA: sempre por os filtros antes de ordena-los
+    // 1.5 - filtro por preco
+    if(valorLimite !=="nenhum"){
+        switch(valorLimite){
+            case "ate100":
+                resultado = resultado.filter(produto => produto.preco < 100);
+                break
+            case "entre100e500":
+                resultado = resultado.filter(produto => produto.preco >= 100 && produto.preco < 500);
+                break
+            case "acima500":
+                resultado = resultado.filter(produto => produto.preco >= 500);
+                break
+        }
+    }
     // ORDENAR (usando .sort()!)
     if (ordenacao === "nome") {
         resultado.sort(function(a, b) {
@@ -100,17 +114,7 @@ function filtrarProdutos() {
         });
     }
     
-    // 1.5 - filtro por preco
-    if(valorLimite === "ate100"){
-        resultado = resultado.filter(produto => produto.preco < 100);
-    }else if(valorLimite === "entre100e500"){
-        resultado = resultado.filter(produto => produto.preco >= 100 && produto.preco < 500);
-    } else if(valorLimite === "acima500"){
-        resultado = resultado.filter(produto => produto.preco >= 500);
-    }
-    else{
-        alert("error: filtro de preço falhou");
-    }
+
 
     // EXIBIR RESULTADO
     exibirProdutos(resultado);
@@ -123,7 +127,7 @@ function limparFiltros() {
     inputBusca.value = "";
     selectCategoria.value = "todos";
     selectOrdenar.value = "padrao";
-    selectFaixaPreco = "nenhum";
+    selectFaixaPreco.value = "nenhum";
     exibirProdutos();
 }
 
@@ -133,6 +137,8 @@ function limparFiltros() {
 inputBusca.addEventListener("input", filtrarProdutos);
 selectCategoria.addEventListener("change", filtrarProdutos);
 selectOrdenar.addEventListener("change", filtrarProdutos);
+// 1.6 - lsitener para o filtro de preco
+selectFaixaPreco.addEventListener("change", filtrarProdutos);
 btnLimpar.addEventListener("click", limparFiltros);
 
 // ========================================
