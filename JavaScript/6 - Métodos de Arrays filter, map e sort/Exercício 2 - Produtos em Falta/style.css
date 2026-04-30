@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: Arial, sans-serif;
+    padding: 30px 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 36px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.filtros {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    display: grid;
+    /* define o tamanho dos elementos na div de pesquisa*/
+    /* 1.2 - adiciona o espaço para o novo select de preço*/
+    /* 2.2 - adiciona espaço para o checkbox de estoque*/
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+    gap: 15px;
+}
+
+.filtros input,
+.filtros select {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.filtros input:focus,
+.filtros select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.filtros button {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filtros button:hover {
+    background-color: #d32f2f;
+}
+
+#contador {
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#contador strong {
+    color: #667eea;
+}
+
+#listaProdutos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card-produto {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.card-produto:hover {
+    transform: translateY(-5px);
+}
+
+.produto-nome {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.produto-preco {
+    font-size: 22px;
+    color: #667eea;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.produto-estoque {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.produto-categoria {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #666;
+}
+/* 2.3 - centralizando horizontalmente o texto*/
+.container-checkbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+}
+
+/* 2.4 - aumentando o tamanho da caixa e centraliza verticalmente */
+input[type="checkbox"]{
+    height: 30px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer; 
+    /* Remove o estilo padrão 
+    -webkit-appearance: none;
+    appearance: none;
+    /* Define a borda 
+    border: 2px solid #1aef1a; /* Cor da borda */
+    border-radius: 4px; /* Opcional: arredondar cantos */
+}
+/* Estilo quando o checkbox estiver marcado 
+input[type="checkbox"]:checked {
+  background-color: rgb(4, 222, 48); /* Cor de preenchimento ao marcar 
+  border-color: rgb(0, 139, 35); /* Cor da borda ao marcar 
+}
