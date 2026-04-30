@@ -33,7 +33,7 @@ let checkboxEstoque = document.getElementById("apenasEstoque");
 // ========================================
 // 3. FUNÇÃO: EXIBIR PRODUTOS
 // ========================================
-function exibirProdutos(arrayProdutos = produtos) {
+function exibirProdutos(arrayProdutos = produtos, textoBuscado = "") {
     // Limpar lista
     listaProdutos.innerHTML = "";
     console.log(arrayProdutos.length === 0);
@@ -55,9 +55,14 @@ function exibirProdutos(arrayProdutos = produtos) {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2 //fixa o número de casas decimais em 2 casas
         });
-
+        // 3.3 - coloração do texto
+        let nomeExibido = produto.nome;
+        if(textoBuscado !== ""){
+            const regex = new RegExp(`(${textoBuscado})`, 'gi');
+            nomeExibido = nomeExibido.replace(regex, '<span class="fonte-amarela">$1</span>');
+        }
         card.innerHTML = `
-            <div class="produto-nome">${produto.nome}</div>
+            <div class="produto-nome">${nomeExibido}</div>
             <div class="produto-preco">${formatadorBR.format(produto.preco)}</div>
             <div class="produto-estoque">Estoque: ${produto.estoque} unidades</div>
             <span class="produto-categoria">${produto.categoria}</span>
@@ -92,10 +97,6 @@ function filtrarProdutos() {
         });
     }
     
-    // 3.3 - colorindo o texto procurado
-    resultado.nome = resultado.nome.replace(new RegExp(textoBusca, 'gi'), function(){
-        return resultado.nome.classList.add("fonte-amarela");
-    }); 
     // FILTRAR POR CATEGORIA (usando .filter()!)
     if (categoriaSelecionada !== "todos") {
         resultado = resultado.filter(function(produto) {
@@ -138,7 +139,7 @@ function filtrarProdutos() {
 
 
     // EXIBIR RESULTADO
-    exibirProdutos(resultado);
+    exibirProdutos(resultado, textoBusca);
 }
 
 // ========================================
@@ -150,7 +151,7 @@ function limparFiltros() {
     selectOrdenar.value = "padrao";
     selectFaixaPreco.value = "nenhum";
     checkboxEstoque.checked = false;
-    exibirProdutos(produtos);
+    exibirProdutos(produtos, "");
 }
 
 // ========================================
