@@ -137,8 +137,15 @@ function filtrarProdutos() {
             return b.preco - a.preco;
         });
     }else if (ordenacao === "cateAlfabMenorPreco"){
-        resultado.sort((a, b) => a.categoria - b.categoria);
-        resultado.sort((a, b) => a.preco - b.preco);
+        resultado.sort(function(a, b) {
+        // quando o valor do sort é negativo ele inverte a posição dos valores, quando é positivo ele mantem
+        // PRIMEIRO CRITÉRIO: Categoria
+        if (a.categoria < b.categoria) return -1;  // Eletrônicos antes de Periféricos
+        if (a.categoria > b.categoria) return 1;   // Periféricos depois de Eletrônicos
+        
+        // SEGUNDO CRITÉRIO: Preço (só chega aqui se categorias forem IGUAIS)
+        return a.preco - b.preco;  // Menor preço primeiro
+});
     }
     
 
