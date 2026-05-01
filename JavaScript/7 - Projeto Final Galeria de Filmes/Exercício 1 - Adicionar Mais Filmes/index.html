@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Filmes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Galeria de Filmes</h1>
+
+        <!-- Área de Filtros -->
+        <div class="filtros">
+            <div class="filtro-group">
+                <label for="busca">🔍 Buscar:</label>
+                <input type="text" id="busca" placeholder="Digite o nome do filme">
+            </div>
+
+            <div class="filtro-group">
+                <label for="genero">🎭 Gênero:</label>
+                <select id="genero">
+                    <option value="todos">Todos</option>
+                    <option value="Ação">Ação</option>
+                    <option value="Comédia">Comédia</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Ficção Científica">Ficção Científica</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Terror">Terror</option>
+                </select>
+            </div>
+
+            <div class="filtro-group">
+                <label for="notaMinima">⭐ Nota mínima: <span id="valorNota">0</span></label>
+                <input type="range" id="notaMinima" min="0" max="5" value="0" step="1">
+            </div>
+
+            <div class="filtro-group">
+                <label for="ordenar">📊 Ordenar por:</label>
+                <select id="ordenar">
+                    <option value="padrao">Padrão</option>
+                    <option value="titulo">Título (A-Z)</option>
+                    <option value="ano">Ano</option>
+                    <option value="nota">Nota</option>
+                </select>
+            </div>
+
+            <button id="btnLimpar">🔄 Limpar Filtros</button>
+        </div>
+
+        <!-- Contador -->
+        <div class="contador">
+            <p id="contadorTexto">Exibindo <strong id="qtdExibida">0</strong> de <strong id="qtdTotal">0</strong> filmes</p>
+        </div>
+
+        <!-- Grid de Filmes -->
+        <div id="listaFilmes">
+            <!-- Cards dos filmes aparecerão aqui -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
