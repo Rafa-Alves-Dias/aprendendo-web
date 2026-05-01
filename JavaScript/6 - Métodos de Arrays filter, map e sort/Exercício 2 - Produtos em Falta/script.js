@@ -36,7 +36,6 @@ let checkboxEstoque = document.getElementById("apenasEstoque");
 function exibirProdutos(arrayProdutos = produtos) {
     // Limpar lista
     listaProdutos.innerHTML = "";
-    console.log(arrayProdutos.length === 0);
     // Verificar se há produtos
     if (arrayProdutos.length === 0) {
         listaProdutos.innerHTML = "<p style='color: white; text-align: center; grid-column: 1/-1;'>Nenhum produto encontrado 😔</p>";

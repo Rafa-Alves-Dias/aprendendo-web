@@ -42,18 +42,20 @@ function exibirProdutos(arrayProdutos = produtos, textoBuscado = "") {
         contador.innerHTML = "Exibindo <strong>0</strong> produtos";
         return;
     }
-
-    // Criar cards
-    arrayProdutos.forEach(function(produto) {
-        let card = document.createElement("div");
-        card.className = "card-produto";
-        // 2.0 - formatar o preço para o padrão brasileiro
+    // 4.1 - valor total disponivel na loja (acc = acumulador)
+    let valorTotal = arrayProdutos.reduce((acc, produtoAtual) => acc + (produtoAtual.preco * produtoAtual.estoque) , 0);
+    // 2.0 - formatar o preço para o padrão brasileiro
         const formatadorBR = new Intl.NumberFormat('pt-BR',{
             style: 'currency', //adficiona na frente o simbolo da moeda
             currency: 'BRL', // seleciona o simbolo de reais (R$)
             minimumFractionDigits: 2,
             maximumFractionDigits: 2 //fixa o número de casas decimais em 2 casas
         });
+    // Criar cards
+    arrayProdutos.forEach(function(produto) {
+        let card = document.createElement("div");
+        card.className = "card-produto";
+        
         // 3.3 - coloração do texto
         let nomeExibido = produto.nome;
         if(textoBuscado !== ""){
@@ -69,9 +71,10 @@ function exibirProdutos(arrayProdutos = produtos, textoBuscado = "") {
 
         listaProdutos.appendChild(card);
     });
-
+    
     // Atualizar contador
-    contador.innerHTML = `Exibindo <strong>${arrayProdutos.length}</strong> produtos`;
+    // 4.2 - adicionando visualmente o valor total
+    contador.innerHTML = `Exibindo <strong>${arrayProdutos.length}</strong> produtos | <strong>${formatadorBR.format(valorTotal)}</strong> avaliados em marcadoria`;
 }
 
 // ========================================
