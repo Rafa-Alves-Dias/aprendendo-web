@@ -10,6 +10,9 @@ let filmes = [
 { titulo: "O Poderoso Chefão", genero: "Drama", ano: 1972, nota: 9.2, poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" },
 { titulo: "O Poderoso Chefão - Parte II", genero: "Drama", ano: 1974, nota: 9.0, poster: "https://br.web.img3.acsta.net/medias/nmedia/18/90/93/27/20120933.jpg" },
 
+// [2.5] - NOVO FILME DA DÉCADA DE 70
+{ titulo: "Taxi Driver", genero: "Drama", ano: 1976, nota: 8.8, poster: "https://upload.wikimedia.org/wikipedia/pt/3/33/Taxi_Driver_%281976_film_poster%29.jpg" },
+
 // NOTAS 8.0 - 8.9
 { titulo: "Pulp Fiction", genero: "Drama", ano: 1994, nota: 8.9, poster: "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" },
 { titulo: "Clube da Luta", genero: "Drama", ano: 1999, nota: 8.8, poster: "https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" },
@@ -45,6 +48,11 @@ let filmes = [
 { titulo: "Cinquenta Tons de Cinza", genero: "Romance", ano: 2015, nota: 5.3, poster: "https://m.media-amazon.com/images/I/61KNsq9npcL._AC_UF1000,1000_QL80_.jpg" },
 { titulo: "Emoji: O Filme", genero: "Animação", ano: 2017, nota: 5.2, poster: "https://upload.wikimedia.org/wikipedia/pt/3/3a/The_Emoji_Movie_p%C3%B4ster.jpg" },
 
+// [2.5] - NOVO FILME DA DÉCADA DE 2020
+{ titulo: "Morbius", genero: "Ação", ano: 2022, nota: 5.2, poster: "https://image.tmdb.org/t/p/w500/6JjfSchsU6daXk2AKX8EEBjO3Fm.jpg" },
+// [2.5] - NOVO FILME DA DÉCADA DE 2020
+{ titulo: "Matrix Resurrections", genero: "Ficção Científica", ano: 2021, nota: 5.7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7wwby7fL49Yf6bZqvQPbrheUkBg7UoJZjyw&s" },
+
 // NOTAS 4.0 - 4.9
 { titulo: "Transformers: A Era da Extinção", genero: "Ação", ano: 2014, nota: 4.8, poster: "https://br.web.img3.acsta.net/pictures/14/06/20/23/27/478475.jpg" },
 { titulo: "Tartarugas Ninja", genero: "Ação", ano: 2014, nota: 4.6, poster: "https://br.web.img2.acsta.net/pictures/14/07/18/13/58/562226.jpg" },
@@ -60,10 +68,13 @@ let filmes = [
 { titulo: "Birdemic: A Ameaça", genero: "Terror", ano: 2010, nota: 2.1, poster: "https://m.media-amazon.com/images/I/51IDKwzzMAL._AC_UF1000,1000_QL80_.jpg" },
 { titulo: "Megan is Missing", genero: "Terror", ano: 2011, nota: 2.0, poster: "https://m.media-amazon.com/images/I/81d2mjHfs9L._AC_UF894,1000_QL80_.jpg" },
 
+
 // NOTAS 1.0 - 1.9
 { titulo: "O Último Mestre do Ar", genero: "Fantasia", ano: 2010, nota: 1.8, poster: "https://obarquinhocultural.com/wp-content/uploads/2010/07/abf64-ultimomestredoar_12.jpg" },
 { titulo: "Fading of the Cries", genero: "Terror", ano: 2011, nota: 1.7, poster: "https://m.media-amazon.com/images/M/MV5BNDVlZjdhNDAtNDRlOS00NDA2LWJjYTctY2ExN2RkYmY2ZWE1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" },
 { titulo: "Gesto", genero: "Drama", ano: 2011, nota: 1.6, poster: "https://m.media-amazon.com/images/M/MV5BMjI4NmQ5YmYtZDY5Yy00YWFhLThhZmQtNzYxZTFjZTY2OWQ4XkEyXkFqcGc@._V1_.jpg" },
+// [2.5] - NOVO FILME DA DÉCADA DE 2020
+{ titulo: "Madame Teia", genero: "Ação", ano: 2024, nota: 1.5, poster: "https://br.web.img3.acsta.net/pictures/23/12/12/15/59/2772653.jpg" },
 
 // NOTAS 0.0 - 0.9
 { titulo: "Superman IV: Em Busca da Paz", genero: "Ação", ano: 1987, nota: 0.8, poster: "https://i.redd.it/n9q78yaa7b7a1.jpg" },
@@ -82,6 +93,9 @@ let btnLimpar = document.getElementById("btnLimpar");
 let listaFilmes = document.getElementById("listaFilmes");
 let qtdExibida = document.getElementById("qtdExibida");
 let qtdTotal = document.getElementById("qtdTotal");
+
+// [2.2] - variavel para o filtro de década
+let selectFiltrarDec = document.getElementById("filtro-decada");
 
 // 3. VARIÁVEL GLOBAL PARA ARMAZENAR FILMES FILTRADOS
 let filmesExibidos = [...filmes]; // Cópia do array original
@@ -193,6 +207,35 @@ function filtrarFilmes() {
     resultado = resultado.filter(function(filme) {
         return filme.nota >= notaSelecionada;
     });
+    // [2.3] filtrando por década
+    let decada = parseInt(selectFiltrarDec.value);
+    console.log(decada);
+    if(!(isNaN(decada))){
+        switch(true) {
+            case(decada === 1970): // (71-80)
+            resultado = resultado.filter(produto => produto.ano < 1981);
+            break;
+            case(decada === 1980): // (81-90)
+            resultado = resultado.filter(produto => produto.ano >= 1981 && produto.ano < 1991);
+            break;
+            case(decada === 1990): // (91-2000)
+            resultado = resultado.filter(produto => produto.ano >= 1991 && produto.ano < 2001);
+            break;
+            case(decada === 2000): // (2001- 2010)
+            resultado = resultado.filter(produto => produto.ano >= 2001 && produto.ano < 2011);
+            break;
+            case(decada === 2010): // (2011 - 2020)
+            resultado = resultado.filter(produto => produto.ano >= 2011 && produto.ano < 2021);
+            break;
+            case(decada === 2020): // (2021 - 2030)
+            resultado = resultado.filter(produto => produto.ano >= 2021 && produto.ano < 2031);
+            break;
+            default:
+                alert("erro no switch case de década");
+        }
+    }
+
+    
 
     // 5.6 Aplicar ordenação
     let criterio = selectOrdenar.value;
@@ -232,6 +275,7 @@ function limparFiltros() {
     inputNotaMinima.value = 0;
     valorNota.textContent = 0;
     selectOrdenar.value = "padrao";
+    selectFiltrarDec.value = "padrao";
 
     // 6.2 Exibir todos os filmes
     filmesExibidos = [...filmes];
@@ -253,6 +297,9 @@ inputNotaMinima.addEventListener("input", function() {
     valorNota.textContent = inputNotaMinima.value;
     filtrarFilmes();
 });
+
+// [2.4] - Event Listenner do select de década
+selectFiltrarDec.addEventListener("change", filtrarFilmes);
 
 // Ordenação
 selectOrdenar.addEventListener("change", filtrarFilmes);
