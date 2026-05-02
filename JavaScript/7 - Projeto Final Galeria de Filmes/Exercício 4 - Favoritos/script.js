@@ -135,65 +135,24 @@ function exibirFilmes(arrayFilmes) {
     for (let i = 0; i < arrayFilmes.length; i++) {
         let filme = arrayFilmes[i];
 
-        // CRIAR o card
-        let card = document.createElement("div");
-        card.className = "card-filme";
-
-        // CRIAR o poster
-        let poster = document.createElement("img");
-        poster.className = "filme-poster";
-        poster.src = filme.poster;
-        poster.alt = filme.titulo;
-
-        // CRIAR a área de informações
-        let info = document.createElement("div");
-        info.className = "filme-info";
-
-        // CRIAR o título
-        let titulo = document.createElement("div");
-        titulo.className = "filme-titulo";
-        titulo.textContent = filme.titulo;
-
-        // CRIAR área de detalhes (ano + nota)
-        let detalhes = document.createElement("div");
-        detalhes.className = "filme-detalhes";
-
-        let ano = document.createElement("span");
-        ano.className = "filme-ano";
-        ano.textContent = filme.ano;
-
-        let nota = document.createElement("span");
-        nota.className = "filme-nota";
-        nota.textContent = "⭐ " + filme.nota + "/10";
+        // CRIAR o card (reaproveitando a função)
+        let card = criarCardFilme(filme);
 
         // [4.3] - criar botão de favorito
         let btnFavorito = document.createElement("button");
         btnFavorito.className = "btn-favoritar";
         btnFavorito.textContent = "❤️ Favoritar";
-        // [4.4] - Event Listener do botão favoritos
+
+        // [4.4] - vincular ID do filme ao botão favoritos
+        btnFavorito.value = filme.id;
+
+        // [4.5] - Event Listener do botão favoritos
         btnFavorito.addEventListener("click", () => {
             addFavoritos(btnFavorito);
         });
-        // [4.6] - vincular ID do filme ao botão favoritos
-        btnFavorito.value = filme.id;
-        
-        detalhes.appendChild(ano);
-        detalhes.appendChild(nota);
-
-        // CRIAR o gênero
-        let genero = document.createElement("span");
-        genero.className = "filme-genero";
-        genero.textContent = filme.genero;
-
-        // MONTAR a estrutura
-        info.appendChild(titulo);
-        info.appendChild(detalhes);
-        info.appendChild(genero);
-
-        card.appendChild(poster);
-        card.appendChild(info);
-        // [4.7] - adicionando o botão favorito ao card
+        // [4.6] - adicionando o botão favorito ao card
         card.appendChild(btnFavorito);
+
         // ADICIONAR na página
         listaFilmes.appendChild(card);
     }
@@ -234,7 +193,6 @@ function filtrarFilmes(btnFavorito) {
     });
     // [2.3] filtrando por década
     let decada = parseInt(selectFiltrarDec.value);
-    console.log(decada);
     if(!(isNaN(decada))){
         switch(true) {
             case(decada === 1970): // (71-80)
@@ -317,18 +275,79 @@ function mudarTema(){
     }
 }
 
-// [4.5] - função para adicionar ao Grid de favoritos
+// [4.7] - função para adicionar ao Grid de favoritos
 function addFavoritos(btnFavorito){
-    btnFavorito.classList.add("adicionado-favoritos"); // background vermelho
-    let card = [1]; 
-    card = listaFilmes.filter( card => card.id === btnFavorito.value);
-    if(card === null){
-        alert("Erro ao favoritar");
-    } else{
-        btnFavorito.textContent = "💖 favoritado";
-        gridFavoritos.appendChild(card);
+    // [4.7.1] - Encontrar o filme pelo ID usando o array original
+    let filmeId = btnFavorito.value;
+    let filme = filmes.find(filmes => filmes.id === filmeId);
+    if(!filme){
+        alert("Erro ao favoritar: filme não encontrado");
+        return
     }
+
+    // [4.7.2] - Verificar se já foi favoritado (evita duplicação)
+    let jaFavoritado = gridFavoritos.querySelector(`[data-filme-id="${filmeId}"]`);
+    if(jaFavoritado){
+        alert("Este filme já está na lista de favoritos!");
+        return;
+    }
+
+    // [4.7.3] - Criar o card do filme favorito (similar ao card principal)
+    let = cardFavorito = criarCardFilme(filme);
+    cardFavorito.setAttribute("data-filme-id", filmeId); 
+
+    // [4.7.4] - Adicionar ao grid de favoritos
+    gridFavoritos.appendChild(cardFavorito);
+
+    // [4.7.5] - Atualizar o botão
+    btnFavorito.classList.add("adicionado-favoritos");
+    btnFavorito.textContent = "💖 Favoritado";
+    btnFavorito.disabled = true;
 } 
+// [4.8] - Função auxiliar para criar um card de filme (evita duplicação de código)
+function criarCardFilme(filme) {
+    let card = document.createElement("div");
+    card.className = "card-filme";
+    
+    let poster = document.createElement("img");
+    poster.className = "filme-poster";
+    poster.src = filme.poster;
+    poster.alt = filme.titulo;
+    
+    let info = document.createElement("div");
+    info.className = "filme-info";
+    
+    let titulo = document.createElement("div");
+    titulo.className = "filme-titulo";
+    titulo.textContent = filme.titulo;
+    
+    let detalhes = document.createElement("div");
+    detalhes.className = "filme-detalhes";
+    
+    let ano = document.createElement("span");
+    ano.className = "filme-ano";
+    ano.textContent = filme.ano;
+    
+    let nota = document.createElement("span");
+    nota.className = "filme-nota";
+    nota.textContent = "⭐ " + filme.nota + "/10";
+    
+    detalhes.appendChild(ano);
+    detalhes.appendChild(nota);
+    
+    let genero = document.createElement("span");
+    genero.className = "filme-genero";
+    genero.textContent = filme.genero;
+    
+    info.appendChild(titulo);
+    info.appendChild(detalhes);
+    info.appendChild(genero);
+    
+    card.appendChild(poster);
+    card.appendChild(info);
+    
+    return card;
+}
 // ========================================
 // 7. EVENTOS
 // ========================================

@@ -108,6 +108,7 @@ h1 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 25px;
+    margin-bottom: 50px;
 }
 
 .card-filme {
@@ -290,7 +291,7 @@ body.dark-mode #btnTema:hover {
     box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
 }
 
-/* ================= [4.8] - BOTÃO FAVORITAR ================ */
+/* ================= [4.9] - BOTÃO FAVORITAR ================ */
 .btn-favoritar {
     display: block;
     width: calc(100% - 30px);

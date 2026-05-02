@@ -213,7 +213,6 @@ function filtrarFilmes() {
     });
     // [2.3] filtrando por década
     let decada = parseInt(selectFiltrarDec.value);
-    console.log(decada);
     if(!(isNaN(decada))){
         switch(true) {
             case(decada === 1970): // (71-80)
