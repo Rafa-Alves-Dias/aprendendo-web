@@ -32,7 +32,7 @@
 
             <div class="filtro-group">
                 <label for="notaMinima">⭐ Nota mínima: <span id="valorNota">0</span></label>
-                <input type="range" id="notaMinima" min="0" max="5" value="0" step="1">
+                <input type="range" id="notaMinima" min="0" max="10" value="0" step="1">
             </div>
 
             <div class="filtro-group">
@@ -41,7 +41,9 @@
                     <option value="padrao">Padrão</option>
                     <option value="titulo">Título (A-Z)</option>
                     <option value="ano">Ano</option>
-                    <option value="nota">Nota</option>
+                    <!-- 0.1 - criando ordenação crescente e descrescente de nota -->
+                    <option value="maiorNota">Maior nota</option>
+                    <option value="menorNota">Menor nota</option>
                 </select>
             </div>
 
