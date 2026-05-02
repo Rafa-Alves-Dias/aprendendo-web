@@ -73,6 +73,7 @@ let filmes = [
 { titulo: "O Último Mestre do Ar", genero: "Fantasia", ano: 2010, nota: 1.8, poster: "https://obarquinhocultural.com/wp-content/uploads/2010/07/abf64-ultimomestredoar_12.jpg" },
 { titulo: "Fading of the Cries", genero: "Terror", ano: 2011, nota: 1.7, poster: "https://m.media-amazon.com/images/M/MV5BNDVlZjdhNDAtNDRlOS00NDA2LWJjYTctY2ExN2RkYmY2ZWE1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" },
 { titulo: "Gesto", genero: "Drama", ano: 2011, nota: 1.6, poster: "https://m.media-amazon.com/images/M/MV5BMjI4NmQ5YmYtZDY5Yy00YWFhLThhZmQtNzYxZTFjZTY2OWQ4XkEyXkFqcGc@._V1_.jpg" },
+
 // [2.5] - NOVO FILME DA DÉCADA DE 2020
 { titulo: "Madame Teia", genero: "Ação", ano: 2024, nota: 1.5, poster: "https://br.web.img3.acsta.net/pictures/23/12/12/15/59/2772653.jpg" },
 
@@ -216,22 +217,22 @@ function filtrarFilmes() {
     if(!(isNaN(decada))){
         switch(true) {
             case(decada === 1970): // (71-80)
-            resultado = resultado.filter(produto => produto.ano < 1981);
+            resultado = resultado.filter(filme => filme.ano < 1981);
             break;
             case(decada === 1980): // (81-90)
-            resultado = resultado.filter(produto => produto.ano >= 1981 && produto.ano < 1991);
+            resultado = resultado.filter(filme => filme.ano >= 1981 && filme.ano < 1991);
             break;
             case(decada === 1990): // (91-2000)
-            resultado = resultado.filter(produto => produto.ano >= 1991 && produto.ano < 2001);
+            resultado = resultado.filter(filme => filme.ano >= 1991 && filme.ano < 2001);
             break;
             case(decada === 2000): // (2001- 2010)
-            resultado = resultado.filter(produto => produto.ano >= 2001 && produto.ano < 2011);
+            resultado = resultado.filter(filme => filme.ano >= 2001 && filme.ano < 2011);
             break;
             case(decada === 2010): // (2011 - 2020)
-            resultado = resultado.filter(produto => produto.ano >= 2011 && produto.ano < 2021);
+            resultado = resultado.filter(filme => filme.ano >= 2011 && filme.ano < 2021);
             break;
             case(decada === 2020): // (2021 - 2030)
-            resultado = resultado.filter(produto => produto.ano >= 2021 && produto.ano < 2031);
+            resultado = resultado.filter(filme => filme.ano >= 2021 && filme.ano < 2031);
             break;
             default:
                 alert("erro no switch case de década");
