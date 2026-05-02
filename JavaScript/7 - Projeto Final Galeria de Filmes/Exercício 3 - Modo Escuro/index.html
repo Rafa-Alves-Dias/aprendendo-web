@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Filmes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Galeria de Filmes</h1>
+
+        <!-- Área de Filtros -->
+        <div class="filtros">
+            <div class="filtro-group">
+                <label for="busca">🔍 Buscar:</label>
+                <input type="text" id="busca" placeholder="Digite o nome do filme">
+            </div>
+
+            <div class="filtro-group">
+                <label for="genero">🎭 Gênero:</label>
+                <select id="genero">
+                    <option value="todos">Todos</option>
+                    <option value="Ação">Ação</option>
+                    <option value="Comédia">Comédia</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Ficção Científica">Ficção Científica</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Terror">Terror</option>
+                </select>
+            </div>
+
+            <div class="filtro-group">
+                <label for="notaMinima">⭐ Nota mínima: <span id="valorNota">0</span></label>
+                <input type="range" id="notaMinima" min="0" max="10" value="0" step="1">
+            </div>
+
+            <div class="filtro-group">
+                <label for="ordenar">📊 Ordenar por:</label>
+                <select id="ordenar">
+                    <option value="padrao">Padrão</option>
+                    <option value="titulo">Título (A-Z)</option>
+                    <option value="ano">Ano</option>
+                    <!-- [0.1] - criando ordenação crescente e descrescente de nota -->
+                    <option value="maiorNota">Maior nota</option>
+                    <option value="menorNota">Menor nota</option>
+                </select>
+                <!-- [2.1] - criando um select de década-->
+                <select id="filtro-decada">
+                    <option value="padrao">todas</option>
+                    <option value="1970">Década de 70</option>
+                    <option value="1980">Década de 80</option>
+                    <option value="1990">Década de 90</option>
+                    <option value="2000">Década de 2000</option>
+                    <option value="2010">Década de 2010</option>
+                    <option value="2020">Década de 2020</option>
+                </select>
+            </div>
+
+            <button id="btnLimpar">🔄 Limpar Filtros</button>
+            <!-- [3.1] botão para mudar de tema-->
+            <button id="btnTema">🌙 Modo Escuro</button>
+        </div>
+
+        <!-- Contador -->
+        <div class="contador">
+            <p id="contadorTexto">Exibindo <strong id="qtdExibida">0</strong> de <strong id="qtdTotal">0</strong> filmes</p>
+        </div>
+
+        <!-- Grid de Filmes -->
+        <div id="listaFilmes">
+            <!-- Cards dos filmes aparecerão aqui -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
