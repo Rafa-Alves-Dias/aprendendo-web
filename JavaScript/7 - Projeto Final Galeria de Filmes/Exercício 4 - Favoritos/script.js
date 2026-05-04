@@ -4,8 +4,6 @@
 
 // 1. ARRAY DE OBJETOS - BASE DE DADOS DOS FILMES
 // [1] - adicionando filmes ao catálogo e capas reais
-// 1. ARRAY DE OBJETOS - BASE DE DADOS DOS FILMES
-// 1. ARRAY DE OBJETOS - BASE DE DADOS DOS FILMES
 let filmes = [
 // NOTAS 9.0+
 { id: "um_sonho_de_liberdade_1994", titulo: "Um Sonho de Liberdade", genero: "Drama", ano: 1994, nota: 9.3, poster: "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg" },

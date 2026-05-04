@@ -4,8 +4,6 @@
 
 // 1. ARRAY DE OBJETOS - BASE DE DADOS DOS FILMES
 // [1] - adicionando filmes ao catálogo e capas reais
-// 1. ARRAY DE OBJETOS - BASE DE DADOS DOS FILMES
-// 1. ARRAY DE OBJETOS - BASE DE DADOS DOS FILMES
 let filmes = [
 // NOTAS 9.0+
 { id: "um_sonho_de_liberdade_1994", titulo: "Um Sonho de Liberdade", genero: "Drama", ano: 1994, nota: 9.3, poster: "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg" },
@@ -275,6 +273,12 @@ function mudarTema(){
     }
 }
 
+// ========================================
+// FUNÇÕES CORRETAS PARA FAVORITOS COM LOCALSTORAGE
+// ========================================
+
+// [5.1.1] - criando array para guardar os IDs dos filmes favoritos
+let arrayIDFav = [];
 // [4.7] - função para adicionar ao Grid de favoritos
 function addFavoritos(btnFavorito){
     // [4.7.1] - Encontrar o filme pelo ID usando o array original
@@ -303,13 +307,36 @@ function addFavoritos(btnFavorito){
     btnFavorito.classList.add("adicionado-favoritos");
     btnFavorito.textContent = "💖 Favoritado";
     btnFavorito.disabled = true;
-       
-    // [5.1.1] - passando a div gridFavoritos para String (localStorage só trabalha com string)
-    let filmesJSON = JSON.stringify(gridFavoritos);
-    // [5.1.2] - passando para o localStorace a chave e o valor
-    localStorage.setItem("meus favoritos", filmesJSON);
-    exibeFavoritos();
-} 
+
+    // [5.1.2] - adicinando cada filme favorito na array;
+    arrayIDFav.push(filmeId);
+    localStorage.setItem("meus favoritos", JSON.stringify(arrayIDFav));
+}
+// [5.2] - exibindo os favoritos salvos
+// [5.2.1] - cria o texto (p) quando o gridfav está vazio
+let pFavoritoVazio = document.createElement("p");
+
+function recriarFavoritos(){
+    // Limpar grid antes de recriar (importante!)
+    gridFavoritos.innerHTML = "";
+    let vetorJSON = localStorage.getItem("meus favoritos");
+    let vetorIDFav = JSON.parse(vetorJSON);
+
+
+    if(vetorIDFav && vetorIDFav.length > 0){
+        let filme;
+        let cardFav;
+        vetorIDFav.forEach(filmeID => {
+            filme = filmes.find(filme => filme.id === filmeID);
+            cardFav = criarCardFilme(filme);
+            gridFavoritos.appendChild(cardFav);
+        });
+    } else{
+        pFavoritoVazio.disabled = false;
+        pFavoritoVazio.textContent = "🤍 Nenhum filme adicionado aos favoritos ainda";
+        gridFavoritos.appendChild(pFavoritoVazio);
+    }
+}
 // [4.8] - Função auxiliar para criar um card de filme (evita duplicação de código)
 function criarCardFilme(filme) {
     let card = document.createElement("div");
@@ -389,28 +416,8 @@ btnTema.addEventListener("click", mudarTema);
 // Atualizar total de filmes
 qtdTotal.textContent = filmes.length;
 
-// [5.2] - exibindo os favoritos salvos
-// [5.2.1] - cria o texto (p) quando o gridf está vazio
-let pFavoritoVazio = document.createElement("p");
 
-function exibeFavoritos(){
-    // [5.2.2] - a variavel filmesJSON recebe o valor em string
-    let filmesJSON = localStorage.getItem("meus favoritos");
-    // [5.2.3] - é feita a conversão de string para HTML e passado para a variável filmesRecuperados
-    let filmesRecuperados = JSON.parse(filmesJSON);
-    console.log(filmesRecuperados);
-    
-    if(filmesRecuperados !== "{}"){
-        console.log("CHEGOU AQUI");
-        // copia o conteúdo interno da div
-        gridFavoritos.innerHTML = filmesRecuperados.innerHTML
-        pFavoritoVazio.disabled;
-    }else{
-        pFavoritoVazio.disabled = false;
-        pFavoritoVazio.textContent = "🤍 Nenhum filme adicionado aos favoritos ainda";
-        gridFavoritos.appendChild(pFavoritoVazio);
-    }
-}
+
 // Exibir todos os filmes ao carregar
 exibirFilmes(filmesExibidos);
-exibeFavoritos();
+recriarFavoritos();
