@@ -277,8 +277,7 @@ function mudarTema(){
 // FUNÇÕES CORRETAS PARA FAVORITOS COM LOCALSTORAGE
 // ========================================
 
-// [5.1.1] - criando array para guardar os IDs dos filmes favoritos
-let arrayIDFav = [];
+
 // [4.7] - função para adicionar ao Grid de favoritos
 function addFavoritos(btnFavorito){
     // [4.7.1] - Encontrar o filme pelo ID usando o array original
@@ -308,12 +307,24 @@ function addFavoritos(btnFavorito){
     btnFavorito.textContent = "💖 Favoritado";
     btnFavorito.disabled = true;
 
-    // [5.1.2] - adicinando cada filme favorito na array;
-    arrayIDFav.push(filmeId);
-    localStorage.setItem("meus favoritos", JSON.stringify(arrayIDFav));
+    // [5.1.] - adicinando cada filme favorito na array;
+    salvarArrayFav(filmeId);
 }
+
+// [5.3] - cria uma função para não sobrescrever a lista 
+function salvarArrayFav(filmeId){
+    let arrayHistorico = [];
+    let vetorJSON = localStorage.getItem("meus favoritos");
+    arrayHistorico = JSON.parse(vetorJSON);
+    arrayHistorico.push(filmeId);
+    if(arrayHistorico && arrayHistorico.length > 0 ){
+        // criando um formato que o JSON reconheça
+        localStorage.setItem("meus favoritos", JSON.stringify(arrayHistorico));
+    }
+}
+
 // [5.2] - exibindo os favoritos salvos
-// [5.2.1] - cria o texto (p) quando o gridfav está vazio
+// [5.2.1] - cria o texto (p) quando o gridFav está vazio
 let pFavoritoVazio = document.createElement("p");
 
 function recriarFavoritos(){
@@ -322,7 +333,7 @@ function recriarFavoritos(){
     let vetorJSON = localStorage.getItem("meus favoritos");
     let vetorIDFav = JSON.parse(vetorJSON);
 
-
+    // se possuir conmteúdo ele será criado e mostrado no gridFav
     if(vetorIDFav && vetorIDFav.length > 0){
         let filme;
         let cardFav;
@@ -332,7 +343,7 @@ function recriarFavoritos(){
             gridFavoritos.appendChild(cardFav);
         });
     } else{
-        pFavoritoVazio.disabled = false;
+        // senão ele mostrará uma mensagem 
         pFavoritoVazio.textContent = "🤍 Nenhum filme adicionado aos favoritos ainda";
         gridFavoritos.appendChild(pFavoritoVazio);
     }
