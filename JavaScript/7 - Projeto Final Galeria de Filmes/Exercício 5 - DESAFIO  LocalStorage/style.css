@@ -219,7 +219,7 @@ body.dark-mode .contador {
 }
 
 body.dark-mode .contador p {
-    color: #eeeeee;
+    color: #4e2373;
 }
 
 body.dark-mode .contador strong {
@@ -350,4 +350,197 @@ p{
     background-color: white;
     border-radius: 10px;
     padding: 10px 20px;
+}
+/* ============= [5.9] estilização h3 ==========================*/
+/* ===== TÍTULOS DAS SEÇÕES ===== */
+.grid-filmes h3 {
+    grid-column: 1 / -1; /* Faz o título ocupar toda a largura */
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgba(255,255,255,0.3);
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+/* Versão para o modo escuro */
+body.dark-mode .grid-filmes h3 {
+    color: #eeeeee;
+    border-bottom-color: rgba(255,255,255,0.2);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Alternativa mais estilizada */
+.grid-filmes h3 {
+    grid-column: 1 / -1;
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #fff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    text-align: center;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.grid-filmes h3::before {
+    content: "🎬";
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+.grid-filmes h3:first-of-type::before {
+    content: "⭐";
+}
+
+body.dark-mode .grid-filmes h3 {
+    background: linear-gradient(135deg, #f0f0f0, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+/* ============== [5.10] - btn remover ======================*/
+/* ================= BOTÃO REMOVER - VERSÃO COMPACTA ================= */
+.btn-remover {
+    display: block;
+    width: calc(100% - 30px);
+    margin: 0 15px 15px 15px;
+    padding: 8px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.btn-remover:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+.btn-remover:active {
+    transform: translateY(0);
+}
+
+body.dark-mode .btn-remover {
+    background-color: #e53935;
+}
+
+body.dark-mode .btn-remover:hover {
+    background-color: #c62828;
+}
+/* [5.10.1] - titulo de lista */
+/* ===== TÍTULOS DAS SEÇÕES ===== */
+.titulo-secao {
+    grid-column: 1 / -1;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgba(255,255,255,0.3);
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+/* Para o título de favoritos também */
+#filmesFavoritos .titulo-secao {
+    margin-top: 30px;
+}
+
+/* Modo escuro */
+body.dark-mode .titulo-secao {
+    color: #eeeeee;
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+
+/* [5.16] - filtro indicador */
+.filtro-ativo-indicador {
+    background-color: #e703bd;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+body.dark-mode .filtro-ativo-indicador {
+    background-color: #ae028e;
+}
+/* ============== [5.17] - MENSAGEM DE FAVORITOS VAZIO ====================== */
+.favoritos-vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+.favoritos-vazio-icone {
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+.favoritos-vazio-mensagem {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.favoritos-vazio-sub {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Animação do coração */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+/* ===== MODO ESCURO - MENSAGEM DE FAVORITOS VAZIO ===== */
+body.dark-mode .favoritos-vazio {
+    background: linear-gradient(135deg, #16213e, #1a1a2e);  /* ← fundo gradiente escuro */
+    border: 1px solid rgba(139, 92, 246, 0.3);  /* ← borda roxa sutil */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .favoritos-vazio-mensagem {
+    color: #8b5cf6;
+}
+
+body.dark-mode .favoritos-vazio-sub {
+    color: #8b5cf6;  /* ← roxo para destacar a instrução */
+}
+
+body.dark-mode .favoritos-vazio-icone {
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }

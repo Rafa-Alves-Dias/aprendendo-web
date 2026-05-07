@@ -10,11 +10,12 @@ let filmes = [
 { id: "o_poderoso_chefao_1972", titulo: "O Poderoso Chefão", genero: "Drama", ano: 1972, nota: 9.2, poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" },
 { id: "o_poderoso_chefao_parte_ii_1974", titulo: "O Poderoso Chefão - Parte II", genero: "Drama", ano: 1974, nota: 9.0, poster: "https://br.web.img3.acsta.net/medias/nmedia/18/90/93/27/20120933.jpg" },
 
+// NOTAS 8.0 - 8.9
+{ id: "pulp_fiction_1994", titulo: "Pulp Fiction", genero: "Drama", ano: 1994, nota: 8.9, poster: "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" },
+
 // [2.5] - NOVO FILME DA DÉCADA DE 70
 { id: "taxi_driver_1976", titulo: "Taxi Driver", genero: "Drama", ano: 1976, nota: 8.8, poster: "https://upload.wikimedia.org/wikipedia/pt/3/33/Taxi_Driver_%281976_film_poster%29.jpg" },
 
-// NOTAS 8.0 - 8.9
-{ id: "pulp_fiction_1994", titulo: "Pulp Fiction", genero: "Drama", ano: 1994, nota: 8.9, poster: "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" },
 { id: "clube_da_luta_1999", titulo: "Clube da Luta", genero: "Drama", ano: 1999, nota: 8.8, poster: "https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" },
 { id: "forrest_gump_1994", titulo: "Forrest Gump", genero: "Drama", ano: 1994, nota: 8.8, poster: "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg" },
 { id: "a_origem_2010", titulo: "A Origem", genero: "Ficção Científica", ano: 2010, nota: 8.8, poster: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg" },
@@ -134,35 +135,56 @@ function exibirFilmes(arrayFilmes) {
         let filme = arrayFilmes[i];
 
         // CRIAR o card (reaproveitando a função)
-        let card = criarCardFilme(filme);
+        let card = criarCardFilme(filme, "lista");
 
-        // [4.3] - criar botão de favorito
-        let btnFavorito = document.createElement("button");
-        btnFavorito.className = "btn-favoritar";
-        btnFavorito.textContent = "❤️ Favoritar";
-
-        // [4.4] - vincular ID do filme ao botão favoritos
-        btnFavorito.value = filme.id;
-
-        // [4.5] - Event Listener do botão favoritos
-        btnFavorito.addEventListener("click", () => {
-            addFavoritos(btnFavorito);
-        });
-        // [4.6] - adicionando o botão favorito ao card
-        card.appendChild(btnFavorito);
-
+        
         // ADICIONAR na página
         listaFilmes.appendChild(card);
     }
 
     // 4.4 Atualizar contador
     qtdExibida.textContent = arrayFilmes.length;
+
+    // [5.14.1] - atualização dos botões
+    atualizarBotoesFavoritos();
 }
 
 // ========================================
 // 5. FUNÇÃO: FILTRAR FILMES
 // ========================================
-function filtrarFilmes(btnFavorito) {
+
+// [5.15.1] - desabilitar o favoritos quando houver pesquisas
+function visibilidadeAbaFavoritos(){
+    const temFiltroAtivo = 
+    inputBusca.value !== "" ||
+    selectOrdenar.value !== "padrao" ||
+    selectGenero.value !== "todos" ||
+    parseInt(inputNotaMinima.value) > 0 ||
+    selectFiltrarDec.value !== "padrao";
+
+    // limpar o indicador por segurança 
+    let indicadorExistente = document.querySelector(".filtro-ativo-indicador");
+    if (indicadorExistente) {
+        indicadorExistente.remove();
+    }
+
+    if(temFiltroAtivo){
+        gridFavoritos.style.display = "none";
+
+        // [5.15.2] - indicador visual
+        let indicador = document.querySelector(".filtro-ativo-indicador");
+        if(!indicador){
+            indicador = document.createElement("p");
+            indicador.className = "filtro-ativo-indicador";
+            indicador.textContent = "🔍 Filtros ativos - Favoritos ocultos";
+            gridFavoritos.before(indicador);
+        }
+    }else{
+        gridFavoritos.style.display = "grid";   
+    }
+}
+function filtrarFilmes() {
+    visibilidadeAbaFavoritos();
     // 5.1 Pegar valores dos filtros
     let textoBusca = inputBusca.value.toLowerCase().trim();
     let generoSelecionado = selectGenero.value;
@@ -258,9 +280,16 @@ function limparFiltros() {
     selectOrdenar.value = "padrao";
     selectFiltrarDec.value = "padrao";
 
+    let indicadorExistente = document.querySelector(".filtro-ativo-indicador");
+    if (indicadorExistente) {
+        indicadorExistente.remove();
+    }
+
     // 6.2 Exibir todos os filmes
     filmesExibidos = [...filmes];
     exibirFilmes(filmesExibidos);
+    // [5.15.2] - Mostrar novamente a seção de favoritos
+    gridFavoritos.style.display = "grid";
 }
 
 // [3.4] - função para trocar tema
@@ -296,7 +325,7 @@ function addFavoritos(btnFavorito){
     }
 
     // [4.7.3] - Criar o card do filme favorito (similar ao card principal)
-    let cardFavorito = criarCardFilme(filme);
+    let cardFavorito = criarCardFilme(filme, "favorito");
     cardFavorito.setAttribute("data-filme-id", filmeId); 
 
     // [4.7.4] - Adicionar ao grid de favoritos
@@ -308,48 +337,121 @@ function addFavoritos(btnFavorito){
     btnFavorito.disabled = true;
 
     // [5.1.] - adicinando cada filme favorito na array;
-    salvarArrayFav(filmeId);
+    salvarFavoritos(filmeId);
+}
+
+// [5.4] - medidas de segurança para JSON
+function carregarFavoritos(){
+    let vetorJSON = localStorage.getItem("meus favoritos");
+    if(!vetorJSON) return [];
+
+    try{
+        let dados = JSON.parse(vetorJSON);
+        return Array.isArray(dados)? dados : []
+    }catch(e){
+        return [];
+    }
 }
 
 // [5.3] - cria uma função para não sobrescrever a lista 
-function salvarArrayFav(filmeId){
-    let arrayHistorico = [];
-    let vetorJSON = localStorage.getItem("meus favoritos");
-    arrayHistorico = JSON.parse(vetorJSON);
-    arrayHistorico.push(filmeId);
-    if(arrayHistorico && arrayHistorico.length > 0 ){
-        // criando um formato que o JSON reconheça
-        localStorage.setItem("meus favoritos", JSON.stringify(arrayHistorico));
+function salvarFavoritos(filmeId){
+    let favoritosExistentes = carregarFavoritos();
+    if(!favoritosExistentes.includes(filmeId)){
+        favoritosExistentes.push(filmeId);
+        localStorage.setItem("meus favoritos", JSON.stringify(favoritosExistentes));
+    }
+}
+// [5.12] - persistir o botão adicionado
+// [5.4] - remover favorito
+function removerFavorito(botaoRemover){
+    // botaoRemover é o botão que foi clicado
+    
+    // 🔍 .closest() sobe até encontrar o card que contém este botão
+    let card = botaoRemover.closest(".card-filme");
+    
+    // Agora temos o card inteiro!
+    let filmeId = card.getAttribute("data-filme-id");  // "matrix_1999"
+    
+    // Remove o card da tela
+    card.remove();
+    let favoritos = carregarFavoritos();
+    let novosFavoritos = favoritos.filter(id => id !== filmeId);
+    localStorage.setItem("meus favoritos", JSON.stringify(novosFavoritos));
+
+    // [5.13] - reativar o botão adicionar na tela 
+    let btnOriginal = document.querySelector(`.btn-favoritar[value="${filmeId}"]`);
+    if(btnOriginal){
+        btnOriginal.classList.remove("adicionado-favoritos");
+        btnOriginal.textContent = "❤️ Favoritar";
+        btnOriginal.disabled = false;
     }
 }
 
+// [5.14] - Função para atualizar botões após recarregar
+function atualizarBotoesFavoritos(){
+    let favoritos = carregarFavoritos();
+    document.querySelectorAll("#listaFilmes .btn-favoritar").forEach(btn => {
+        if (favoritos.includes(btn.value)){
+            btn.classList.add("adicionado-favoritos");
+            btn.textContent = "💖 Favoritado";
+            btn.disabled = true;
+        } else{
+            btn.classList.remove("adicionado-favoritos");
+            btn.textContent = "❤️ Favoritar";
+            btn.disabled = false;
+        }
+    });
+}
 // [5.2] - exibindo os favoritos salvos
-// [5.2.1] - cria o texto (p) quando o gridFav está vazio
-let pFavoritoVazio = document.createElement("p");
-
 function recriarFavoritos(){
-    // Limpar grid antes de recriar (importante!)
+    // [5.2.1] - Limpar grid antes de recriar (importante!)
     gridFavoritos.innerHTML = "";
-    let vetorJSON = localStorage.getItem("meus favoritos");
-    let vetorIDFav = JSON.parse(vetorJSON);
 
-    // se possuir conmteúdo ele será criado e mostrado no gridFav
-    if(vetorIDFav && vetorIDFav.length > 0){
-        let filme;
-        let cardFav;
-        vetorIDFav.forEach(filmeID => {
-            filme = filmes.find(filme => filme.id === filmeID);
-            cardFav = criarCardFilme(filme);
-            gridFavoritos.appendChild(cardFav);
-        });
-    } else{
-        // senão ele mostrará uma mensagem 
-        pFavoritoVazio.textContent = "🤍 Nenhum filme adicionado aos favoritos ainda";
-        gridFavoritos.appendChild(pFavoritoVazio);
+    // [5.2.2] - recriando o h3
+    let tituloFav = document.createElement("h3");
+    tituloFav.textContent = "⭐ Favoritos";
+    gridFavoritos.appendChild(tituloFav);
+
+    //[5.2.3] - puxa os dados salvos direto do localStorage
+    let vetorIDFav = carregarFavoritos();
+
+    if(vetorIDFav.length === 0){
+        // [5.2.4] - cria a mensagem de vazio estilizada
+        let divVazio = document.createElement("div");
+        divVazio.className = "favoritos-vazio";
+        
+        let icone = document.createElement("div");
+        icone.className = "favoritos-vazio-icone";
+        icone.textContent = "💔";
+        
+        let mensagem = document.createElement("p");
+        mensagem.className = "favoritos-vazio-mensagem";
+        mensagem.textContent = "Nenhum filme adicionado aos favoritos ainda";
+        
+        let subMensagem = document.createElement("p");
+        subMensagem.className = "favoritos-vazio-sub";
+        subMensagem.textContent = "Clique no coração ❤️ de um filme para adicioná-lo aqui";
+        
+        divVazio.appendChild(icone);
+        divVazio.appendChild(mensagem);
+        divVazio.appendChild(subMensagem);
+        gridFavoritos.appendChild(divVazio);
+        return;
     }
+    // se possuir conmteúdo ele será criado e mostrado no gridFav
+    vetorIDFav.forEach(filmeID => {
+        let filme = filmes.find(filme => filme.id === filmeID);
+        let cardFav = criarCardFilme(filme, "favorito");
+        // [5.2.5] - cria uma marcação no html que facilita a identificação e manipulação dos cards com "setAttribute".
+        cardFav.setAttribute("data-filme-id", filmeID);
+        gridFavoritos.appendChild(cardFav);
+    });
+    // [5.14.1] - atualização dos botões
+    atualizarBotoesFavoritos();
 }
 // [4.8] - Função auxiliar para criar um card de filme (evita duplicação de código)
-function criarCardFilme(filme) {
+// [5.6] - adicionando parametro para diferenciar os botoes dos grids
+function criarCardFilme(filme, tipo) {
     let card = document.createElement("div");
     card.className = "card-filme";
     
@@ -389,8 +491,45 @@ function criarCardFilme(filme) {
     
     card.appendChild(poster);
     card.appendChild(info);
-    
+    let button;
+    //[5.6.1] - cria um botão diferente pra cada grid
+    if(tipo === "lista"){
+         button = criarBtnFavorito(filme);
+    } else if(tipo === "favorito"){
+        button = criarBtnRemover();
+    }else{
+        alert ("erro no tipo de botão");
+        return;
+    }
+    card.appendChild(button);
     return card;
+}
+// [5.7] - criar botão favorito
+function criarBtnFavorito(filme){
+    // [4.3] - criar botão de favorito
+        let btnFavorito = document.createElement("button");
+        btnFavorito.className = "btn-favoritar";
+        btnFavorito.textContent = "❤️ Favoritar";
+
+        // [4.4] - vincular ID do filme ao botão favoritos
+        btnFavorito.value = filme.id;
+
+        // [4.5] - Event Listener do botão favoritos
+        btnFavorito.addEventListener("click", () => {
+            addFavoritos(btnFavorito);
+        });
+        // [4.6] - adicionando o botão favorito ao card
+        //card.appendChild(btnFavorito);
+        return btnFavorito
+}
+// [5.8] - criar botão excluir
+function criarBtnRemover(){
+    let btnRemover = document.createElement("button");
+    btnRemover.className = "btn-remover";
+    btnRemover.textContent = "🗑️ Remover";
+    // Evento de clique para remover
+    btnRemover.addEventListener("click", () => removerFavorito(btnRemover));
+    return btnRemover;
 }
 // ========================================
 // 7. EVENTOS
@@ -432,3 +571,6 @@ qtdTotal.textContent = filmes.length;
 // Exibir todos os filmes ao carregar
 exibirFilmes(filmesExibidos);
 recriarFavoritos();
+
+// [5.15.3] - garante que será mostrado ao inicializar 
+gridFavoritos.style.display = "grid";
