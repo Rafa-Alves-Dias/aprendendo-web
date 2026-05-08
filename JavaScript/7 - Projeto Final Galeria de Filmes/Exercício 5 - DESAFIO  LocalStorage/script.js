@@ -338,6 +338,9 @@ function addFavoritos(btnFavorito){
 
     // [5.1.] - adicinando cada filme favorito na array;
     salvarFavoritos(filmeId);
+
+    // [5.18] - desabilitar msg vazio fav
+    //if(document.querySelector("favoritos-vazio"))
 }
 
 // [5.4] - medidas de segurança para JSON
